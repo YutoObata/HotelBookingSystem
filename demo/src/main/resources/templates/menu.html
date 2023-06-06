@@ -9,13 +9,13 @@
 <body>
     <h2>メニュー画面</h2>
     <div class="menu">
-        <form>
-            <button type="submit">
+        <form th:action="@{/select}" method="post">
+            <button type="submit" name="mode" value="gotoBooking">
                 <p>予約へ</p>
             </button>
         </form>
-        <form>
-            <button type="submit">
+        <form th:action="@{/select}" method="post">
+            <button type="submit" name="mode" value="gotoManage">
                 <p>管理者画面</p>
             </button>
         </form>
