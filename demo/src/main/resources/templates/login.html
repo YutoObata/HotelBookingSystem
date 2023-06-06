@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login Page</title>
 </head>
@@ -12,5 +12,7 @@
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Log in">
     </form>
+    <!-- エラーメッセージを表示する場所 -->
+    <p style="color: red;" th:text="${errorMessage}"></p>
 </body>
 </html>

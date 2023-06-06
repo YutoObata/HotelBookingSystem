@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,42 +9,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MenuController {
     
-    // ローカルホストではmenu.htmlを開く
+    /* -------------------
+        ローカルホスト
+    -------------------- */
     @GetMapping("/")
     public String showMenu() {
         return "menu";
     }
 
+    /* -------------------
+        メニュー画面
+    -------------------- */
     @PostMapping("/select")
 	public String selectMode(@RequestParam("mode") String mode) {
 		if (mode.equals("gotoBooking")) {
 			// 予約画面へ
-			return "login";
+			return "booking";
 		} else if (mode.equals("gotoManage")) {
 			// 管理者画面へ
-			return "manager";
+			return "login";
 		} else {
 			return "menu";
 		}
 	}
 
-    // @GetMapping("/login")
-    // public String showLoginPage() {
-    //     return "login";
-    // }
-
+    /* -------------------
+        ログイン画面
+    -------------------- */
     @PostMapping("/dashboard")
-    public String login(String username, String password) {
+    public String login(String username, String password, Model model) {
         // ログイン処理
         if (username.equals("user") && password.equals("1234")) {
-            return "conpleted";
+            return "manager";
         } else {
+            model.addAttribute("errorMessage", "Username or password is incorrect.");
             return "login";
         }
-    }
-
-    @GetMapping("/dashboard")
-    public String showDashboard() {
-        return "conpleted";
     }
 }
