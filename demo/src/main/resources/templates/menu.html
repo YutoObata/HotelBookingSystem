@@ -4,21 +4,33 @@
 	<meta charset="UTF-8" />
 	<title>menu</title>
 	<script type="text/javascript"></script>
-	<!-- <link th:href="@{/css/styleMenu.css}" rel="stylesheet" type="text/css" /> -->
+	<link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>メニュー画面</h2>
+    <!-- <h2>メニュー画面</h2> -->
+    <header>
+        <button><img src="/img/hotel_icon_14230-101x101.jpg" alt="img"></button>
+        <p>インターコンチネンタルホテル</p>
+        <form th:action="@{/select}" method="post">
+            <button type="submit" name="mode" value="gotoManage">
+                <img src="/img/hotel_bellboy_40327-101x101.jpg" alt="img">
+            </button>
+        </form>
+    </header>
+    
+    <hr>
+
+    <br>
+    <br>
+    <br>
     <div class="menu">
         <form th:action="@{/select}" method="post">
             <button type="submit" name="mode" value="gotoBooking">
                 <p>予約へ</p>
             </button>
         </form>
-        <form th:action="@{/select}" method="post">
-            <button type="submit" name="mode" value="gotoManage">
-                <p>管理者画面</p>
-            </button>
-        </form>
+        
     </div>
 </body>
 </html>
