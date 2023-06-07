@@ -24,7 +24,7 @@ public class MenuController {
 	public String selectMode(@RequestParam("mode") String mode) {
 		if (mode.equals("gotoBooking")) {
 			// 予約画面へ
-			return "booking";
+			return "roomSelect";
 		} else if (mode.equals("gotoManage")) {
 			// 管理者画面へ
 			return "login";
