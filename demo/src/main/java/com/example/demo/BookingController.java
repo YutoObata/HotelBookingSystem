@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,10 @@ public class BookingController {
 	/* -------------------
         日程の選択
     -------------------- */
+	private Map<String, Integer> userTel;
+	private Map<String, Integer> numberOfAdult;
+	private Map<String, Integer> numberOfChild;
+
 	@PostMapping("/select/dateSelect")
 	public String selectDate(@RequestParam("checkInDate") String checkInDate,
 							@RequestParam("checkOutDate") String checkOutDate,
@@ -55,13 +61,14 @@ public class BookingController {
 		// DBに格納
 		UserData existingData = userRepository.findByName(userData.getName());
 		if (existingData != null) {
-			existingData.setAdult(adults); // 変更点：existingDataに対してセットする
-			existingData.setChild(children); // 変更点：existingDataに対してセットする
+			existingData.setAdult(existingData.getAdult() + adults); // 変更点：既存の大人の数に加算する
+			existingData.setChild(existingData.getChild() + children); // 変更点：既存の子供の数に加算する
 			userRepository.save(existingData);
 		} else {
-			userData.setAdult(adults); // 変更点：userDataに対してセットする
-			userData.setChild(children); // 変更点：userDataに対してセットする
-			userRepository.save(userData);
+			existingData = new UserData(); // 新しいUserDataオブジェクトを作成する
+			existingData.setAdult(adults);
+			existingData.setChild(children);
+			userRepository.save(existingData);
 		}
 
 		initializeFromDatabase();
@@ -112,7 +119,18 @@ public class BookingController {
 		return "completed";
 	}
 
+
 	private void initializeFromDatabase() {
+		userTel = new HashMap<>();
+		numberOfAdult = new HashMap<>();
+		numberOfChild = new HashMap<>();
+
+		Iterable<UserData> data = userRepository.findAll();
+		for(UserData user : data) {
+			userTel.put(user.getName(), user.getTel());
+			numberOfAdult.put(user.getName(), user.getAdult());
+			numberOfChild.put(user.getName(), user.getChild());
+		}
 		// データベースから初期化する必要はありません
 	}
 }
