@@ -11,11 +11,13 @@
             <th>名前</th>
             <th>電話番号</th>
             <th>大人</th>
+            <th>子供</th>
         </tr>
         <tr th:each="userData : ${userDataList}">
             <td th:text="${userData.name}"></td>
             <td th:text="${userData.tel}"></td>
             <td th:text="${userData.adult}"></td>
+            <td th:text="${userData.child}"></td>
         </tr>
     </table>    
     
