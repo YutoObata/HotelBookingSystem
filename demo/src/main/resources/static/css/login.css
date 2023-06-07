@@ -4,19 +4,20 @@
     float: right;
 }
 
+.form-text {
+    margin-top: 70px;
+    margin-bottom: -30px;
+    text-align: center;
+    color: #58bff6;
+}
+
 div#form {
-    position: absolute;
     width: 360px;
     height: 320px;
-    height: auto;
     background-color: #fff;
     margin: auto;
     border-radius: 5px;
-    padding: 20px;
-    left: 50%;
-    top: 50%;
-    margin-left: -180px;
-    margin-top: -200px;
+    padding: 50px;
 }
 
 div.form-item {
