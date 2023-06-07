@@ -11,12 +11,13 @@
             <th>電話番号</th>
             <th>大人</th>
         </tr>
-        <tr th:each="entry : ${userData}">
-            <td th:text="${entry.name}"></td>
-            <td th:text="${entry.tel}"></td>
-            <td th:text="${entry.adult}"></td>
+        <tr th:each="userData : ${userDataList}">
+            <td th:text="${userData.name}"></td>
+            <td th:text="${userData.tel}"></td>
+            <td th:text="${userData.adult}"></td>
         </tr>
     </table>
     
+    <a href="/">戻る</a>
 </body>
 </html>

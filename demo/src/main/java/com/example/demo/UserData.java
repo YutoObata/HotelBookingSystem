@@ -30,7 +30,7 @@ public class UserData {
         this.name = name;
     }
 
-    public int getTel() {
+    public Integer getTel() {
         return tel;
     }
 
@@ -38,7 +38,7 @@ public class UserData {
         this.tel = tel;
     }
 
-    public int getAdult() {
+    public Integer getAdult() {
         return adult;
     }
 

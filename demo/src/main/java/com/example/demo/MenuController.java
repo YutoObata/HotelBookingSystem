@@ -21,17 +21,22 @@ public class MenuController {
         メニュー画面
     -------------------- */
     @PostMapping("/select")
-	public String selectMode(@RequestParam("mode") String mode) {
-		if (mode.equals("gotoBooking")) {
-			// 予約画面へ
-			return "roomSelect";
-		} else if (mode.equals("gotoManage")) {
-			// 管理者画面へ
-			return "login";
-		} else {
-			return "menu";
-		}
-	}
+    public String selectMode(@RequestParam("mode") String mode, Model model) {
+        if (mode.equals("gotoBooking")) {
+            // 予約画面へ
+            return "roomSelect";
+        } else if (mode.equals("gotoManage")) {
+            // 管理者画面へ
+            String username = (String) model.getAttribute("username");
+            if (username != null) {
+                return "redirect:/manager";
+            } else {
+                return "login";
+            }
+        } else {
+            return "menu";
+        }
+    }
 
     /* -------------------
         ログイン画面
@@ -40,7 +45,8 @@ public class MenuController {
     public String login(String username, String password, Model model) {
         // ログイン処理
         if (username.equals("user") && password.equals("1234")) {
-            return "manager";
+            model.addAttribute("username", username);
+            return "redirect:/manager";
         } else {
             model.addAttribute("errorMessage", "Username or password is incorrect.");
             return "login";

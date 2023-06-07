@@ -33,42 +33,34 @@ public class BookingController {
 	/* -------------------
         予約画面
     -------------------- */
-    private Map<String, Integer> userTel;
-	private Map<String, Integer> userAdult;
-	private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public BookingController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-        initializeFromDatabase(); // データベースの初期化
-    }
-    
-    @PostMapping("/booking")
+	public BookingController(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@PostMapping("/booking")
 	public String booking(@ModelAttribute @Validated UserData userData, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			// エラーがある場合は入力画面に戻る
+			return "booking";
+		}
+
 		UserData existingData = userRepository.findByName(userData.getName());
-		if(existingData != null) {
+		if (existingData != null) {
 			existingData.setTel(userData.getTel());
 			existingData.setAdult(userData.getAdult());
 			userRepository.save(existingData);
-			userRepository.flush();
 		} else {
 			userRepository.save(userData);
-			userRepository.flush();
 		}
 
-		System.out.println(userData.getTel());
-		System.out.println(userData.getName());
 		initializeFromDatabase();
-		model.addAttribute("userData", userRepository.findAll());
+		model.addAttribute("userDataList", userRepository.findAll());
 		return "completed";
 	}
 
-    private void initializeFromDatabase() {
-		userTel = new HashMap<>();
-		userAdult = new HashMap<>();
-		Iterable<UserData> user = userRepository.findAll();
-		for(UserData data : user) {
-			userTel.put("s", 1);
-			userAdult.put("s", 3);
-		}
-    }
+	private void initializeFromDatabase() {
+		// データベースから初期化する必要はありません
+	}
 }

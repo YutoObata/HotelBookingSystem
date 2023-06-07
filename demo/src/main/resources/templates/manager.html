@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Completed</title>
+    <title>Manager</title>
 </head>
 <body>
     <h2>Manager</h2>
+
+    <table>
+        <tr>
+            <th>名前</th>
+            <th>電話番号</th>
+            <th>大人</th>
+        </tr>
+        <tr th:each="userData : ${userDataList}">
+            <td th:text="${userData.name}"></td>
+            <td th:text="${userData.tel}"></td>
+            <td th:text="${userData.adult}"></td>
+        </tr>
+    </table>    
+    
+    <a href="/">戻る</a>
 </body>
 </html>
