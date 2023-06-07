@@ -1,5 +1,11 @@
 package com.example.demo;
 
-public class UserRepository {
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<UserData, String> {
+
+    // 名前による検索
+    UserData findByName(String name);
 }

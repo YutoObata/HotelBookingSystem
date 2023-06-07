@@ -5,5 +5,18 @@
 </head>
 <body>
     <h2>Let's Booking!</h2>
+
+    <form action="/booking" method="post">
+        <label for="name">予約者名:</label>
+        <input type="text" id="name" name="name"/>
+        
+        <label for="tel">電話番号:</label>
+        <input type="number" id="tel" name="tel"/>
+
+        <label for="drinkQuantity">大人:</label>
+        <input type="number" id="adult" name="adult" min="1" max="10"/>
+
+        <button type="submit">登録</button>
+    </form>
 </body>
 </html>

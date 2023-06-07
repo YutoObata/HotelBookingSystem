@@ -5,5 +5,18 @@
 </head>
 <body>
     <h2>Your Reservation completed</h2>
+    <table>
+        <tr>
+            <th>名前</th>
+            <th>電話番号</th>
+            <th>大人</th>
+        </tr>
+        <tr th:each="entry : ${userData}">
+            <td th:text="${entry.name}"></td>
+            <td th:text="${entry.tel}"></td>
+            <td th:text="${entry.adult}"></td>
+        </tr>
+    </table>
+    
 </body>
 </html>
