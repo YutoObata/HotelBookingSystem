@@ -2,19 +2,19 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title>roomSelect</title>
+	<title>Select Room</title>
 	<script type="text/javascript"></script>
 	<!-- <link th:href="@{/css/styleMenu.css}" rel="stylesheet" type="text/css" /> -->
 </head>
 <body>
     <h2>Select Room</h2><!-- エコノミー、スタンダード、スーペリア、デラックス、スイート -->
     <div class="menu">
-        <form th:action="@{/roomSelect}" method="post">
+        <form th:action="@{/select/roomSelect}" method="post">
             <button type="submit" name="roomSelect" value="economy">
                 <p>エコノミー</p>
             </button>
         </form>
-        <form th:action="@{/roomSelect}" method="post">
+        <form th:action="@{/select/roomSelect}" method="post">
             <button type="submit" name="roomSelect" value="standard">
                 <p>スタンダード</p>
             </button>

@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +15,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BookingController {
 
 	/* -------------------
+        日程の選択
+    -------------------- */
+	@PostMapping("/select/dateSelect")
+	public String selectDate(@RequestParam("checkInDate") String checkInDate,
+							@RequestParam("checkOutDate") String checkOutDate,
+							@RequestParam("adults") int adults,
+							@RequestParam("children") int children,
+							Model model) {
+
+		// チェックイン日とチェックアウト日が未入力の場合はエラーとする
+		if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
+			model.addAttribute("formError", "チェックアウト日またはチェックイン日を入力してください");
+			return "selectDate";
+		}
+
+		try {
+			// チェックアウト日がチェックイン日よりも後の場合はエラーとする
+			LocalDate checkIn = LocalDate.parse(checkInDate);
+			LocalDate checkOut = LocalDate.parse(checkOutDate);
+			if (checkOut.isBefore(checkIn)) {
+				model.addAttribute("formError", "チェックアウト日はチェックイン日よりも後に設定してください。");
+				return "selectDate";
+			}
+		} catch (DateTimeParseException e) {
+			model.addAttribute("formError", "日付の形式が正しくありません");
+			return "selectDate";
+		}
+
+		return "selectRoom";
+	}
+
+
+
+
+
+
+	/* -------------------
         部屋の選択
     -------------------- */
-	@PostMapping("/roomSelect")
-	public String selectMode(@RequestParam("roomSelect") String room) {
+	@PostMapping("/select/roomSelect")
+	public String selectRoom(@RequestParam("roomSelect") String room) {
 		if (room.equals("economy")) {
 			// 
 			return "booking";
@@ -26,7 +63,7 @@ public class BookingController {
 			// 
 			return "booking";
 		} else {
-			return "roomSelect"; // roomSelect.html
+			return "selectRoom"; // roomSelect.html
 		}
 	}
 

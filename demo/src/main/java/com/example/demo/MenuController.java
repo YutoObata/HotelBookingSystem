@@ -23,8 +23,8 @@ public class MenuController {
     @PostMapping("/select")
     public String selectMode(@RequestParam("mode") String mode, Model model) {
         if (mode.equals("gotoBooking")) {
-            // 予約画面へ
-            return "roomSelect";
+            // 予約画面へ(日程・人数選択，部屋の選択，個人情報入力)
+            return "selectDate";
         } else if (mode.equals("gotoManage")) {
             // 管理者画面へ
             String username = (String) model.getAttribute("username");
