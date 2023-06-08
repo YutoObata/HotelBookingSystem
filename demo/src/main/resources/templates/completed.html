@@ -9,6 +9,7 @@
         <tr>
             <th>ID</th>
             <th>名前</th>
+            <th>メールアドレス</th>
             <th>電話番号</th>
             <th>大人</th>
             <th>子供</th>
@@ -17,6 +18,7 @@
         <tr th:each="userData, stat : ${userDataList}">
             <td th:text="${stat.count}"></td>
             <td th:text="${userData.name}"></td>
+            <td th:text="${userData.email}"></td>
             <td th:text="${userData.tel}"></td>
             <td th:text="${userData.adult}"></td>
             <td th:text="${userData.child}"></td>

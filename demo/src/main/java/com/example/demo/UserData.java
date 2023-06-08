@@ -16,7 +16,8 @@ public class UserData {
     private Long id;
 
     private String name;
-    private int tel;
+    private String tel;
+    private String email;
     private int adult;
     private int child;
     private String room;
@@ -24,7 +25,7 @@ public class UserData {
     public UserData() {
     }
     
-    public UserData(String name, int tel, int adult, int child, String room) {
+    public UserData(String name, String tel, String email, int adult, int child, String room) {
         this.name = name;
         this.tel = tel;
         this.adult = adult;
