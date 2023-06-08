@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import org.springframework.security.access.method.P;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +16,7 @@ public class UserData {
     private Long id;
 
     private String name;
-    private String tel;
+    private int tel;
     private String email;
     private String checkIn;
     private String checkOut;
@@ -30,7 +28,7 @@ public class UserData {
     public UserData() {
     }
     
-    public UserData(String name, String tel, String email,
+    public UserData(String name, int tel, String email,
                     String checkIn, String checkOut,
                     int adult, int child, 
                     String room, int price) {
