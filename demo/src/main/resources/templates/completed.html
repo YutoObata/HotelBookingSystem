@@ -7,7 +7,6 @@
     <h2>Your Reservation completed</h2>
     <table>
         <tr>
-            <th>ID</th>
             <th>名前</th>
             <th>メールアドレス</th>
             <th>電話番号</th>
@@ -17,8 +16,7 @@
             <th>子供</th>
             <th>客室タイプ</th>
         </tr>
-        <tr th:each="userData, stat : ${userDataList}">
-            <td th:text="${stat.count}"></td>
+        <tr>
             <td th:text="${userData.name}"></td>
             <td th:text="${userData.email}"></td>
             <td th:text="${userData.tel}"></td>
