@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,9 +30,11 @@ public class BookingController {
     -------------------- */
     @PostMapping("/select/dateSelect")
     public String selectDate(@RequestParam("checkInDate") String checkInDate,
-            @RequestParam("checkOutDate") String checkOutDate, @RequestParam("adult") int adults,
-            @RequestParam("child") int children, @ModelAttribute @Validated UserData userData, BindingResult bindingResult,
-            Model model) {
+							@RequestParam("checkOutDate") String checkOutDate,
+							@RequestParam("adult") Integer adults,
+							@RequestParam("child") Integer children, 
+							@ModelAttribute @Validated UserData userData, 
+							BindingResult bindingResult, Model model) {
 
         if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
             model.addAttribute("formError", "チェックアウト日またはチェックイン日を入力してください");
@@ -52,6 +53,7 @@ public class BookingController {
             return "redirect:/select/dateSelect";
         }
 
+		// DBに登録
 		userData.setAdult(adults);
 		userData.setChild(children);
 		model.addAttribute("userData", userData);
