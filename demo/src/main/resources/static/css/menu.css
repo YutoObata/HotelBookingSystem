@@ -1,24 +1,2 @@
 @charset "UTF-8";
 
-header {
-    display: flex;
-    justify-content: space-between;
-}
-header button {
-    border: none;
-    background: none;
-}
-header p {
-    font-family: 'Crimson Text', serif;
-}
-header form button {
-    margin-top: 10px;
-}
-
-header img {
-    border: solid 2px black;
-    width: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    cursor: hand;
-}

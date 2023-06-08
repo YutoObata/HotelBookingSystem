@@ -1,33 +1,83 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
+	<meta charset="UTF-8"/>
     <title>Completed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+    <!--css-->
+    <link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/completed.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <h2>Your Reservation completed</h2>
-    <table>
-        <tr>
-            <th>名前</th>
-            <th>メールアドレス</th>
-            <th>電話番号</th>
-            <th>チェックイン</th>
-            <th>チェックアウト</th>
-            <th>大人</th>
-            <th>子供</th>
-            <th>客室タイプ</th>
-        </tr>
-        <tr>
-            <td th:text="${userData.name}"></td>
-            <td th:text="${userData.email}"></td>
-            <td th:text="${userData.tel}"></td>
-            <td th:text="${userData.checkIn}"></td>
-            <td th:text="${userData.checkOut}"></td>
-            <td th:text="${userData.adult}"></td>
-            <td th:text="${userData.child}"></td>
-            <td th:text="${userData.room}"></td>
-        </tr>
-    </table>
-    
-    <a href="/">戻る</a>
+    <!----------------------
+            header
+    ------------------------>
+    <header>
+        <button><img src="/img/hotel_icon_14230-101x101.jpg" alt="img"></button>
+        <p>インターコンチネンタルホテル</p>
+        <button><img src="/img/hotel_bellboy_40327-101x101.jpg" alt="img"></button>
+    </header>
+    <hr>
+    <!----------------------
+            flow
+    ------------------------>
+    <section id="flow">
+        <p>日程・人数<span></span></p>
+        <p>客室選択<span></span></p>
+        <p>情報入力<span></span></p>
+        <p class="now">予約完了</p>
+    </section>
+    <!---------------------->
+
+    <section id="completed" class="wrapper">
+        <h3>予約が完了しました。</h3>
+        <div class="completed_text">
+            <span class="completed_left">✓</span>
+            <div  class="completed_right">
+                <p class="title">ご予約が確定しました。</p>
+                <span th:text="${userData.name}"></span>
+                <span>様、ご予約ありがとうございました。</span>
+                <p class="text">確認メールを送付いたしましたので、ご確認ください。</p>
+            </div>
+        </div>
+    </section>
+<br>
+    <section id="detail_content" class="wrapper">
+        <div id="detail">
+            <div class="detail_left">
+                <p class="title">予約内容</p>
+                
+                <span>大人</span>
+                <span th:text="${userData.adult}"></span>
+                <span>名</span>
+                
+                <span>子供</span>
+                <span th:text="${userData.child}"></span>
+                <span>名</span>
+                <br>
+
+                <span>客室</span>
+                <span class="room" th:text="${userData.room}"></span>
+                <span>タイプ</span>
+                <br>
+
+            </div>
+            <div class="detail_right">
+                <p class="check">チェックイン</p>
+                <p class="date" th:text="${userData.checkIn}"></p>
+                <p class="check">チェックアウト</p>
+                <p class="date" th:text="${userData.checkOut}"></p>
+            </div>
+        </div>
+        <hr>
+        <div class="price">
+            <span>料金:</span>
+            <span>○○</span>
+            <span>円</span>
+        </div>
+    </section>    
+    <a class="wrapper" href="/">
+        <input type="submit" class="login pull-right" value="完了">
+    </a>
 </body>
 </html>

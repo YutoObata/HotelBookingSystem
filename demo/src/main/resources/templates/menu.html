@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8" />
+	<meta charset="UTF-8"/>
 	<title>Menu</title>
-	<script type="text/javascript"></script>
-	<link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+    <!--css-->
+	<link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <!-- <h2>メニュー画面</h2> -->
+    <!----------------------
+            header
+    ------------------------>
     <header>
         <button><img src="/img/hotel_icon_14230-101x101.jpg" alt="img"></button>
         <p>インターコンチネンタルホテル</p>
@@ -18,10 +21,19 @@
             </button>
         </form>
     </header>
-    
     <hr>
+    
+    <!----------------------
+            flow
+    ------------------------>
+    <section id="flow">
+        <p>日程・人数<span></span></p>
+        <p>客室選択<span></span></p>
+        <p>情報入力<span></span></p>
+        <p>予約完了</p>
+    </section>
 
-    <br>
+    
     <br>
     <br>
     <div class="menu">
