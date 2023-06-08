@@ -15,8 +15,8 @@
             <th>子供</th>
             <th>客室タイプ</th>
         </tr>
-        <tr th:each="userData, stat : ${userDataList}">
-            <td th:text="${stat.count}"></td>
+        <tr th:each="userData : ${userDataList}">
+            <td th:text="${userData.id}"></td>
             <td th:text="${userData.name}"></td>
             <td th:text="${userData.tel}"></td>
             <td th:text="${userData.adult}"></td>

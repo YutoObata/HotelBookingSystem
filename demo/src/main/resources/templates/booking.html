@@ -13,6 +13,9 @@
         <label for="tel">電話番号:</label>
         <input type="number" id="tel" name="tel"/>
 
+        <!--客室タイプ-->
+        <input type="hidden" name="room" th:value="${userData.room}">
+
         <button type="submit">登録</button>
     </form>
 </body>
