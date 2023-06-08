@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BookingController {
+
 	@Autowired
 	private UserRepository userRepository;
 
     /* -------------------
         Repository
     -------------------- */
-    // private final UserRepository userRepository;
-
     public BookingController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -35,10 +34,6 @@ public class BookingController {
             @RequestParam("checkOutDate") String checkOutDate, @RequestParam("adult") int adults,
             @RequestParam("child") int children, @ModelAttribute @Validated UserData userData, BindingResult bindingResult,
             Model model) {
-
-        if (bindingResult.hasErrors()) {
-            return "selectDate";
-        }
 
         if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
             model.addAttribute("formError", "チェックアウト日またはチェックイン日を入力してください");
@@ -57,21 +52,10 @@ public class BookingController {
             return "redirect:/select/dateSelect";
         }
 
-        UserData existingData = userRepository.findByName(userData.getName());
-        if (existingData != null) {
-            existingData.setAdult(adults);
-            existingData.setChild(children);
-            userRepository.save(existingData);
-        } else {
-            existingData = new UserData();
-            existingData.setName(userData.getName());
-            existingData.setTel(userData.getTel());
-            existingData.setAdult(adults);
-            existingData.setChild(children);
-            userRepository.save(existingData);
-        }
-
-        return "selectRoom";
+		userData.setAdult(adults);
+		userData.setChild(children);
+		model.addAttribute("userData", userData);
+		return "selectRoom";
     }
 
 
@@ -79,12 +63,13 @@ public class BookingController {
         部屋の選択
     -------------------- */
     @PostMapping("/select/roomSelect")
-	public String selectRoom(@RequestParam("roomSelect") String room, Model model) {
-		UserData userData = new UserData();
+	public String selectRoom(@RequestParam("roomSelect") String room,
+							UserData userData, Model model) {
 		userData.setRoom(room);
 		model.addAttribute("userData", userData);
 		return "booking";
 	}
+
 
     /* -------------------
         個人情報入力

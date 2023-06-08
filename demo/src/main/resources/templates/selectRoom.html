@@ -13,11 +13,13 @@
             <button type="submit" name="roomSelect" value="economy">
                 <p>エコノミー</p>
             </button>
-        </form>
-        <form th:action="@{/select/roomSelect}" method="post">
             <button type="submit" name="roomSelect" value="standard">
                 <p>スタンダード</p>
             </button>
+
+            <!--大人/子供の人数-->
+            <input type="hidden" name="adult" th:value="${userData.adult}">
+            <input type="hidden" name="child" th:value="${userData.child}">
         </form>
     </div>
 </body>
