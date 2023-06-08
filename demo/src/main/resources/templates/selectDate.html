@@ -64,6 +64,29 @@
             dateFormat: "Y-m-d" // 日付の形式を指定
         });
     </script>
+
+    <h2>数の増加</h2>
+    <p id="count">0</p>
+    <button onclick="increaseCount()">増加</button>
+    <button onclick="decreaseCount()">減少</button>
+
+    <script>
+        function increaseCount() {
+            var countElement = document.getElementById("count");
+            var count = parseInt(countElement.innerText);
+            count++;
+            countElement.innerText = count;
+        }
+
+        function decreaseCount() {
+            var countElement = document.getElementById("count");
+            var count = parseInt(countElement.innerText);
+            if (count > 0) {
+                count--;
+                countElement.innerText = count;
+            }
+        }
+    </script>
 </body>
 
 </html>
