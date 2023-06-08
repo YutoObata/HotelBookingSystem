@@ -54,6 +54,8 @@ public class BookingController {
         }
 
 		// DBに登録
+		userData.setCheckIn(checkInDate);
+		userData.setCheckOut(checkOutDate);
 		userData.setAdult(adults);
 		userData.setChild(children);
 		model.addAttribute("userData", userData);
