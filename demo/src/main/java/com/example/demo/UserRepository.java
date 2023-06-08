@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserData, String> {
-
-    // 名前による検索
+public interface UserRepository extends JpaRepository<UserData, Integer> {
     UserData findByName(String name);
 }
