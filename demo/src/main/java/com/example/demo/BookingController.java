@@ -2,8 +2,7 @@ package com.example.demo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class BookingController {
 
+    private int nights; // 宿泊日数
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -27,6 +28,7 @@ public class BookingController {
     public BookingController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
 
     /* -------------------
         日程の選択
@@ -51,18 +53,22 @@ public class BookingController {
                 model.addAttribute("formError", "チェックアウト日はチェックイン日よりも後に設定してください。");
                 return "selectDate";
             }
+
+            // 宿泊日数の計算
+            this.nights = (int) ChronoUnit.DAYS.between(checkIn, checkOut);
+
+            // DBに登録
+            userData.setCheckIn(checkInDate);
+            userData.setCheckOut(checkOutDate);
+            userData.setAdult(adults);
+            userData.setChild(children);
+            model.addAttribute("userData", userData);
+            return "selectRoom";
+
         } catch (DateTimeParseException e) {
             model.addAttribute("formError", "日付の形式が正しくありません");
             return "redirect:/select/dateSelect";
         }
-
-		// DBに登録
-		userData.setCheckIn(checkInDate);
-		userData.setCheckOut(checkOutDate);
-		userData.setAdult(adults);
-		userData.setChild(children);
-		model.addAttribute("userData", userData);
-		return "selectRoom";
     }
 
     @GetMapping("/increase")
@@ -77,10 +83,12 @@ public class BookingController {
     @PostMapping("/select/roomSelect")
 	public String selectRoom(@RequestParam("roomSelect") String room,
 							UserData userData, RoomData roomData, Model model) {
-		userData.setRoom(room);
-        userData.setPrice(roomData.getPrice(room));
+        int roomPrice = roomData.getPrice(room);
+        int totalPrice = roomPrice * nights;
+
+        userData.setRoom(room);
+        userData.setPrice(totalPrice);
         
-        System.out.println(userData.getPrice());
 		model.addAttribute("userData", userData);
 		return "booking";
 	}
