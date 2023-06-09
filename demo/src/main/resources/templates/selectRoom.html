@@ -32,34 +32,186 @@
     <!----------------------
             content
     ------------------------>
-    <h2>Select Room</h2><!-- エコノミー、スタンダード、スーペリア、デラックス、スイート -->
-
     <section id="selectRoomTop" class="wrapper">
         <img img src="/img/selectRoom0.jpg" alt="img">
+        <div>
+            <h4>【ノンフレキシブルレート】室料のみ 7~20階</h6>
+            <p>◆素泊まり ◆現地払い ◆in 15:00~24:00 / out 11:00まで</p>
+            <p>ご予約時の客室タイプに応じた一般料金。ご予約後の予定変更にも柔軟に対応いたします。また、宿泊日数の制限や除外日もなくご利用いただけます。</p>
+        </div>
     </section>
-    <hr>
-    <section id="selectRoom" class="wrapper">
-
-    </section>
-
-
-    <div class="menu">
+    <hr><br>
+    <article id="selectRoom" class="wrapper">
         <form th:action="@{/select/roomSelect}" method="post">
-            <button type="submit" name="roomSelect" value="Suite">
-                <p>スイート</p>
-            </button>
-            <button type="submit" name="roomSelect" value="Deluxe">
-                <p>デラックス</p>
-            </button>
-            <button type="submit" name="roomSelect" value="Superior">
-                <p>スーペリア</p>
-            </button>
-            <button type="submit" name="roomSelect" value="Standard">
-                <p>スタンダード</p>
-            </button>
-            <button type="submit" name="roomSelect" value="Economy">
-                <p>エコノミー</p>
-            </button>
+            <!----------------------
+                    Suite
+            ------------------------>
+            <section id="suite">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom1.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1キング 高層階スイート</p>
+                        <span>◆禁煙 ◆84.00m ◆1~8名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Suite">
+                            <p>スイート</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Deluxe
+            ------------------------>
+            <section id="deluxe">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom2.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1キング デラックス</p>
+                        <span>◆禁煙 ◆48.00m ◆1~6名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Deluxe">
+                            <p>デラックス</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Superior
+            ------------------------>
+            <section id="superior">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom3.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1クイーン スイート</p>
+                        <span>◆禁煙 ◆38.00m ◆1~4名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Superior">
+                            <p>スーペリア</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Standard
+            ------------------------>
+            <section id="standard">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom4.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>2シングル スタンダード</p>
+                        <span>◆禁煙 ◆27.00m ◆1~2名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Standard">
+                            <p>スタンダード</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Economy
+            ------------------------>
+            <section id="economy">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom5.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1シングル エコノミー</p>
+                        <span>◆禁煙 ◆27.00m ◆1~2名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Economy">
+                            <p>エコノミー</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
 
             <!--日程-->
             <input type="hidden" name="checkIn" th:value="${userData.checkIn}">
@@ -68,6 +220,15 @@
             <input type="hidden" name="adult" th:value="${userData.adult}">
             <input type="hidden" name="child" th:value="${userData.child}">
         </form>
-    </div>
+    </article>
+
+    <script>
+        // 3桁ごとにカンマを表示する処理を呼び出す
+        numComma();
+        function numComma() {
+            var num = Number(document.getElementById('priceValue').textContent);
+            document.getElementById('priceValue').textContent = num.toLocaleString();
+        }
+    </script>
 </body>
 </html>

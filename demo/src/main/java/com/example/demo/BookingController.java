@@ -38,13 +38,13 @@ public class BookingController {
 							@RequestParam("checkOutDate") String checkOutDate,
 							@RequestParam("adult") Integer adults,
 							@RequestParam("child") Integer children, 
-							@ModelAttribute @Validated UserData userData, 
+							@ModelAttribute @Validated UserData userData, RoomData roomData,
 							BindingResult bindingResult, Model model) {
 
-        if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
-            model.addAttribute("formError", "チェックアウト日またはチェックイン日を入力してください");
-            return "selectDate";
-        }
+        // if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
+        //     model.addAttribute("formError", "チェックアウト日またはチェックイン日を入力してください");
+        //     return "selectDate";
+        // }
 
         try {
             LocalDate checkIn = LocalDate.parse(checkInDate);
@@ -58,10 +58,13 @@ public class BookingController {
             this.nights = (int) ChronoUnit.DAYS.between(checkIn, checkOut);
 
             // DBに登録
+            int roomPrice = roomData.getPrice("Suite");
             userData.setCheckIn(checkInDate);
             userData.setCheckOut(checkOutDate);
             userData.setAdult(adults);
             userData.setChild(children);
+            
+            model.addAttribute("roomPrice", roomPrice);
             model.addAttribute("userData", userData);
             return "selectRoom";
 
