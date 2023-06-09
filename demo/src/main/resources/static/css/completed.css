@@ -96,7 +96,3 @@ input[type="submit"].login:hover {
     cursor: pointer;
     transition: 0.5s;
 }
-
-/* input[type="submit"].login:focus {
-    outline: none;
-} */

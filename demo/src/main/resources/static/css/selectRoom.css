@@ -76,3 +76,24 @@
     text-align: center;
     /* border: solid 1px rgb(199, 199, 199); */
 }
+
+button[name="roomSelect"] {
+    height: 40px;
+    align-items: center;
+    border-radius: 5px;
+    /* background-clip: padding-box; */
+    background-color: rgb(189, 164, 158);
+    border: none;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+button[name="roomSelect"]:hover {
+    background-color: rgba(189, 164, 158, 0.8);
+    cursor: pointer;
+    transition: 0.5s;
+}
+button p {
+    margin: 5px 10px;
+}
