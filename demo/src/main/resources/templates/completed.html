@@ -72,12 +72,22 @@
         <hr>
         <div class="price">
             <span>料金:</span>
-            <span>○○</span>
+            <span id="priceValue" th:text="${userData.price}" ></span>
             <span>円</span>
         </div>
     </section>    
     <a class="wrapper" href="/">
         <input type="submit" class="login pull-right" value="完了">
     </a>
+
+    
+    <script>
+        // 3桁ごとにカンマを表示する処理を呼び出す
+        numComma();
+        function numComma() {
+            var num = Number(document.getElementById('priceValue').textContent);
+            document.getElementById('priceValue').textContent = num.toLocaleString();
+        }
+    </script>
 </body>
 </html>

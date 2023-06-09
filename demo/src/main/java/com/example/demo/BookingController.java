@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,8 +76,11 @@ public class BookingController {
     -------------------- */
     @PostMapping("/select/roomSelect")
 	public String selectRoom(@RequestParam("roomSelect") String room,
-							UserData userData, Model model) {
+							UserData userData, RoomData roomData, Model model) {
 		userData.setRoom(room);
+        userData.setPrice(roomData.getPrice(room));
+        
+        System.out.println(userData.getPrice());
 		model.addAttribute("userData", userData);
 		return "booking";
 	}
