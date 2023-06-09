@@ -20,12 +20,14 @@ public class UserData {
     private String email;
     private String checkIn;
     private String checkOut;
-    private int adult;
-    private int child;
+    private Integer adult;
+    private Integer child;
     private String room;
     private int price;
 
     public UserData() {
+        this.adult = 1;
+        this.child = 0;
     }
     
     public UserData(String name, int tel, String email,

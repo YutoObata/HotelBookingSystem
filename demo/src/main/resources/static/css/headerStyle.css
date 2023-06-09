@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
-/* body {
+body {
     width: 900px;
-} */
+    margin: 0 auto;
+}
 /* header */
 header {
     display: flex;

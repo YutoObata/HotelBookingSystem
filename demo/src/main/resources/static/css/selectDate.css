@@ -1,20 +1,114 @@
 @charset "UTF-8";
 
-form div {
+article {
     display: flex;
-    gap: 30px;
+    gap: 50px;
+}
+
+article form {
+    width: 50%;
+    margin-left: 30px;
+}
+article #member {
+    width: 50%;
+    margin-right: 30px;
 }
 
 #date, #member {
-    border: solid 1px red;
-    width: 50%;
     display: block;
 }
+#date p, #member p {
+    font-size: large;
+    font-weight: bolder;
+}
 
-#date div label {
+#date div, #member div {
+    margin-bottom: 15px;
+}
+
+#date div label, #member div label {
     display: inline-block;
     width: 115px; /* 適切な幅に調整してください */
     text-align: left;
-    margin-right: 10px;
+    margin-left: 20px;
+    gap: 30px;
+}
 
+.colon {
+    margin: auto 20px;
+}
+.adultCount .colon,
+.childCount .colon {
+    margin: auto 30px auto 20px;
+} 
+
+#adultCount, #childCount {
+    margin-left: 30px;
+    margin-right: 5px;
+} 
+
+button[name="next"] {
+    height: 40px;
+    align-items: center;
+    border-radius: 5px;
+    /* background-clip: padding-box; */
+    background-color: rgb(189, 164, 158);
+    border: none;
+    color: #fff;
+    display: block;
+    transition: 0.5s;
+    margin-top: 50px;
+}
+button[name="next"]:hover {
+    background-color: rgba(189, 164, 158, 0.8);
+    cursor: pointer;
+    transition: 0.5s;
+}
+button p {
+    margin: 5px 10px;
+}
+
+/* 疑似要素でプラスとマイナス */
+.op_plus {
+    display: inline-block;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    margin: 0 5px;
+}
+.op_plus:before, .op_plus:after {
+    display: block;
+    content: '';
+    background-color: #333;
+    border-radius: 10px;
+    position: absolute;
+    width: 18px;
+    height: 5px;
+    top: 7px;
+    left: 0;
+}
+.op_plus:before {
+    width: 5px;
+    height: 18px;
+    top: 0;
+    left: 7px;
+}
+
+.op_minus {
+    display: inline-block;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    margin: 0 5px;
+}
+.op_minus:after {
+    display: block;
+    content: '';
+    background-color: #333;
+    border-radius: 10px;
+    position: absolute;
+    width: 18px;
+    height: 5px;
+    top: 7px;
+    left: 0;
 }

@@ -9,6 +9,8 @@
     <!--css-->
     <link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/selectDate.css}" rel="stylesheet" type="text/css"/>
+    <!--javaScript-->
+    <script src="/JS/membersCount.js"></script>
 </head>
 <body>
     <!----------------------
@@ -33,36 +35,56 @@
 
     <!----------------------
             content
-    ------------------------>
-    <h1>Select Date and Number of Guests</h1>
-    
-    <form class="wrapper" action="/select/dateSelect" method="post">
-        <div>
+    ------------------------>    
+    <article class="wrapper">
+        <form action="/select/dateSelect" method="post">
+            <!----------------------
+                    日程
+            ------------------------>
             <section id="date">
                 <p>日程を指定</p>
                 <div>
-                    <label for="checkInDate">チェックイン</label><span>:</span>
-                    <input type="text" id="checkInDate" name="checkInDate" required>
+                    <label for="checkInDate">チェックイン</label><span class="colon">:</span>
+                    <input type="text" id="checkInDate" name="checkInDate" required/>
                 </div>
                 <div>
-                    <label for="checkOutDate">チェックアウト</label><span>:</span>
-                    <input type="text" id="checkOutDate" name="checkOutDate" required>
+                    <label for="checkOutDate">チェックアウト</label><span class="colon">:</span>
+                    <input type="text" id="checkOutDate" name="checkOutDate" required/>
                 </div>
-    
-                <p style="color: red;" th:text="${formError}"></p>
             </section>
-            <section id="member">
-                <p>宿泊人数を指定</p>
-                <label for="adult">Number of Adults:</label>
-                <input type="number" id="adult" name="adult" min="1" max="10" required/>
-    
-                <label for="child">Number of Children:</label>
-                <input type="number" id="child" name="child" min="0" max="10" required/>
-            </section>
-        </div>
+            <!--非表示の宿泊人数-->
+            <input type="hidden" id="adult" name="adult" required/>
+            <input type="hidden" id="child" name="child" required/>
+
+            <button type="submit" name="next" value="Next" onclick="validateMemberCount()">
+                <p>指定した条件で進む</p>
+            </button>
+            
+        </form>
         
-        <input type="submit" value="Next">
-    </form>
+
+
+        <!----------------------
+                宿泊人数
+        ------------------------>
+        <section  id="member">
+            <p>宿泊人数を指定</p>
+            <div class="adultCount">
+                <label>大人</label><span class="colon">:</span>
+                <button onclick="decreaseAdultCount()"><i class="op_minus"></i></button>
+                <span id="adultCount">1</span>
+                <button onclick="increaseAdultCount()"><i class="op_plus"></i></button>
+            </div>
+            <div class="childCount">
+                <label>子供</label><span class="colon">:</span>
+                <button onclick="decreaseChildCount()"><i class="op_minus"></i></button>
+                <span id="childCount">0</span>
+                <button onclick="increaseChildCount()"><i class="op_plus"></i></button>
+            </div>
+        </section>
+    </article>
+    <p id="errorMessage" style="color: red;"></p>
+        <p style="color: red;" th:text="${formError}"></p>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
@@ -80,28 +102,7 @@
         });
     </script>
 
-    <h2>数の増加</h2>
-    <p id="count">0</p>
-    <button onclick="increaseCount()">増加</button>
-    <button onclick="decreaseCount()">減少</button>
 
-    <script>
-        function increaseCount() {
-            var countElement = document.getElementById("count");
-            var count = parseInt(countElement.innerText);
-            count++;
-            countElement.innerText = count;
-        }
-
-        function decreaseCount() {
-            var countElement = document.getElementById("count");
-            var count = parseInt(countElement.innerText);
-            if (count > 0) {
-                count--;
-                countElement.innerText = count;
-            }
-        }
-    </script>
 </body>
 
 </html>
