@@ -53,6 +53,11 @@ header img {
     transform: rotate(45deg);
 }
 
+/* wrapper */
+.wrapper {
+    margin: 0 20px;
+}
+
 /* a */
 a {
     text-decoration: none;

@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-.wrapper {
-    margin: 0 20px;
-}
 /* 濃い緑：rgb(45, 97, 32); */
 /* 薄い緑：rgb(223, 252, 200); */
 
@@ -96,3 +93,4 @@ input[type="submit"].login:hover {
     cursor: pointer;
     transition: 0.5s;
 }
+

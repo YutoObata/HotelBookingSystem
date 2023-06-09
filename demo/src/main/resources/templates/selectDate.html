@@ -36,21 +36,31 @@
     ------------------------>
     <h1>Select Date and Number of Guests</h1>
     
-    <form action="/select/dateSelect" method="post">
-        <label for="checkInDate">Check-in Date:</label>
-        <input type="text" id="checkInDate" name="checkInDate" required>
-
-        <label for="checkOutDate">Check-out Date:</label>
-        <input type="text" id="checkOutDate" name="checkOutDate" required>
-
-        <p style="color: red;" th:text="${formError}"></p>
-
-        <label for="adult">Number of Adults:</label>
-        <input type="number" id="adult" name="adult" min="1" max="10" required/>
-
-        <label for="child">Number of Children:</label>
-        <input type="number" id="child" name="child" min="0" max="10" required/>
-
+    <form class="wrapper" action="/select/dateSelect" method="post">
+        <div>
+            <section id="date">
+                <p>日程を指定</p>
+                <div>
+                    <label for="checkInDate">チェックイン</label><span>:</span>
+                    <input type="text" id="checkInDate" name="checkInDate" required>
+                </div>
+                <div>
+                    <label for="checkOutDate">チェックアウト</label><span>:</span>
+                    <input type="text" id="checkOutDate" name="checkOutDate" required>
+                </div>
+    
+                <p style="color: red;" th:text="${formError}"></p>
+            </section>
+            <section id="member">
+                <p>宿泊人数を指定</p>
+                <label for="adult">Number of Adults:</label>
+                <input type="number" id="adult" name="adult" min="1" max="10" required/>
+    
+                <label for="child">Number of Children:</label>
+                <input type="number" id="child" name="child" min="0" max="10" required/>
+            </section>
+        </div>
+        
         <input type="submit" value="Next">
     </form>
 
@@ -59,12 +69,14 @@
         // カレンダーの設定
         flatpickr("#checkInDate", {
             minDate: "today", // 今日以降の日付のみ選択可能にする
-            dateFormat: "Y-m-d" // 日付の形式を指定
+            dateFormat: "Y-m-d", // 日付の形式を指定
+            theme: "selectDate" // カスタムテーマを指定
         });
 
         flatpickr("#checkOutDate", {
             minDate: "today", // 今日以降の日付のみ選択可能にする
-            dateFormat: "Y-m-d" // 日付の形式を指定
+            dateFormat: "Y-m-d", // 日付の形式を指定
+            theme: "custom-flatpickr" // カスタムテーマを指定
         });
     </script>
 
