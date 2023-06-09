@@ -57,7 +57,7 @@
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="price" id="suitePrice" th:text="${suiteRoomPrice}" ></span>
                         <span class="text">円</span>
                     </td>
 
@@ -71,7 +71,7 @@
 
                     <td class="div6">
                         <button type="submit" name="roomSelect" value="Suite">
-                            <p>スイート</p>
+                            <p>今すぐ予約</p>
                         </button>
                     </td>
                 </table>
@@ -91,7 +91,7 @@
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="price" id="deluxePrice" th:text="${deluxeRoomPrice}" ></span>
                         <span class="text">円</span>
                     </td>
 
@@ -105,7 +105,7 @@
 
                     <td class="div6">
                         <button type="submit" name="roomSelect" value="Deluxe">
-                            <p>デラックス</p>
+                            <p>今すぐ予約</p>
                         </button>
                     </td>
                 </table>
@@ -125,7 +125,7 @@
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="price" id="superiorPrice" th:text="${SuperiorRoomPrice}" ></span>
                         <span class="text">円</span>
                     </td>
 
@@ -139,7 +139,7 @@
 
                     <td class="div6">
                         <button type="submit" name="roomSelect" value="Superior">
-                            <p>スーペリア</p>
+                            <p>今すぐ予約</p>
                         </button>
                     </td>
                 </table>
@@ -159,7 +159,7 @@
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="price" id="standardPrice" th:text="${standardRoomPrice}" ></span>
                         <span class="text">円</span>
                     </td>
 
@@ -173,7 +173,7 @@
 
                     <td class="div6">
                         <button type="submit" name="roomSelect" value="Standard">
-                            <p>スタンダード</p>
+                            <p>今すぐ予約</p>
                         </button>
                     </td>
                 </table>
@@ -193,7 +193,7 @@
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="priceValue" th:text="${roomPrice}" ></span>
+                        <span class="price" id="economyPrice" th:text="${economyRoomPrice}" ></span>
                         <span class="text">円</span>
                     </td>
 
@@ -207,7 +207,7 @@
 
                     <td class="div6">
                         <button type="submit" name="roomSelect" value="Economy">
-                            <p>エコノミー</p>
+                            <p>今すぐ予約</p>
                         </button>
                     </td>
                 </table>
@@ -223,11 +223,16 @@
     </article>
 
     <script>
+        numComma("suitePrice");
+        numComma("deluxePrice");
+        numComma("superiorPrice");
+        numComma("standardPrice");
+        numComma("economyPrice");
+
         // 3桁ごとにカンマを表示する処理を呼び出す
-        numComma();
-        function numComma() {
-            var num = Number(document.getElementById('priceValue').textContent);
-            document.getElementById('priceValue').textContent = num.toLocaleString();
+        function numComma(id) {
+            var num = Number(document.getElementById(id).textContent);
+            document.getElementById(id).textContent = num.toLocaleString();
         }
     </script>
 </body>

@@ -41,10 +41,10 @@ public class BookingController {
 							@ModelAttribute @Validated UserData userData, RoomData roomData,
 							BindingResult bindingResult, Model model) {
 
-        // if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
-        //     model.addAttribute("formError", "チェックアウト日またはチェックイン日を入力してください");
-        //     return "selectDate";
-        // }
+        if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
+            model.addAttribute("formError", "チェックアウト日またはチェックイン日を入力してください");
+            return "selectDate";
+        }
 
         try {
             LocalDate checkIn = LocalDate.parse(checkInDate);
@@ -58,13 +58,23 @@ public class BookingController {
             this.nights = (int) ChronoUnit.DAYS.between(checkIn, checkOut);
 
             // DBに登録
-            int roomPrice = roomData.getPrice("Suite");
             userData.setCheckIn(checkInDate);
             userData.setCheckOut(checkOutDate);
             userData.setAdult(adults);
             userData.setChild(children);
+
+            // 次のページで表示する各客室の値段を取得
+            int suiteRoomPrice = roomData.getPrice("Suite");
+            int deluxeRoomPrice = roomData.getPrice("Deluxe");
+            int superiorRoomPrice = roomData.getPrice("Superior");
+            int standardRoomPrice = roomData.getPrice("Standard");
+            int economyRoomPrice = roomData.getPrice("Economy");
             
-            model.addAttribute("roomPrice", roomPrice);
+            model.addAttribute("suiteRoomPrice", suiteRoomPrice);
+            model.addAttribute("deluxeRoomPrice", deluxeRoomPrice);
+            model.addAttribute("SuperiorRoomPrice", superiorRoomPrice);
+            model.addAttribute("standardRoomPrice", standardRoomPrice);
+            model.addAttribute("economyRoomPrice", economyRoomPrice);
             model.addAttribute("userData", userData);
             return "selectRoom";
 

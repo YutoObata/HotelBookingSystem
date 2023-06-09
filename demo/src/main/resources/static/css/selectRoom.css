@@ -19,10 +19,9 @@
 
 #selectRoom form section{
     border: solid 1px rgb(199, 199, 199);
-    padding: 10px;
+    padding: 8px;
     margin-bottom: 15px;
 }
-
 #selectRoom form section img {
     width: 80%;
     border-radius: 10%;

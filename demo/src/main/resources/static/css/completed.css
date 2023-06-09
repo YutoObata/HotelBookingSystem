@@ -79,7 +79,7 @@
 input[type="submit"].login {
     width: 112px;
     height: 37px;
-    border-radius: 19px;
+    border-radius: 5px;
     background-clip: padding-box;
     background-color: rgb(189, 164, 158);
     border: none;
@@ -87,15 +87,16 @@ input[type="submit"].login {
     font-weight: bold;
     display: block;
     margin: 0 auto;
+    transition: 0.5s;
 }
 
 input[type="submit"].login:hover {
-    background-color: #fff;
-    border: 1px solid rgb(189, 164, 158);
-    color: rgb(189, 164, 158);
+    background-color: rgba(189, 164, 158, 0.8);
+    border: 1px solid rgba(189, 164, 158, 0.8);
     cursor: pointer;
+    transition: 0.5s;
 }
 
-input[type="submit"].login:focus {
+/* input[type="submit"].login:focus {
     outline: none;
-}
+} */
