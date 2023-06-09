@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+#selectRoomTop {
+    display: flex;
+    gap: 20px;
+}
+#selectRoomTop img {
+    width: 40%;
+    border-radius: 2%;
+}
+#selectRoomTop div p {
+    font-size: 12px;
+    color: rgb(100, 100, 100);
+}
+
+#selectRoom form section{
+    border: solid 1px rgb(199, 199, 199);
+    padding: 8px;
+    margin-bottom: 15px;
+}
+#selectRoom form section img {
+    width: 80%;
+    border-radius: 10%;
+}
+
+.div1 {
+    width: 17%;
+}
+
+.div2 {
+    width: 28%;
+}
+.div2 p {
+    font-weight: bolder;
+    margin: 0;
+}
+.div2 span {
+    font-size: 12px;
+    color: rgb(100, 100, 100);
+}
+
+.div3 {
+    width: 20%;
+    border-right: solid 1px rgb(199, 199, 199);
+}
+.div3 span {
+    font-size: 12px;
+}
+.div3 .price {
+    font-size: large;
+    font-weight: bolder;
+}
+
+.div4 {
+    width: 12%;
+    padding-left: 10px;
+    
+    /* border: solid 1px rgb(199, 199, 199); */
+}
+.div4 span {
+    font-size: 12px;
+}
+
+.div5 {
+    width: 8%;
+    text-align: center;
+    
+    /* border: solid 1px rgb(199, 199, 199); */
+}
+.div6 {
+    width: 15;
+    text-align: center;
+    /* border: solid 1px rgb(199, 199, 199); */
+}
+
+button[name="roomSelect"] {
+    height: 40px;
+    align-items: center;
+    border-radius: 5px;
+    /* background-clip: padding-box; */
+    background-color: rgb(189, 164, 158);
+    border: none;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+button[name="roomSelect"]:hover {
+    background-color: rgba(189, 164, 158, 0.8);
+    cursor: pointer;
+    transition: 0.5s;
+}
+button p {
+    margin: 5px 10px;
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+    <title>Select Room</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+    <!--css-->
+    <link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/selectRoom.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <!----------------------
+            header
+    ------------------------>
+    <header>
+        <button><img src="/img/hotel_icon_14230-101x101.jpg" alt="img"></button>
+        <p>インターコンチネンタルホテル</p>
+        <button><img src="/img/hotel_bellboy_40327-101x101.jpg" alt="img"></button>
+    </header>
+    <hr>
+    
+    <!----------------------
+            flow
+    ------------------------>
+    <section id="flow">
+        <p>日程・人数<span></span></p>
+        <p class="now">客室選択<span></span></p>
+        <p>情報入力<span></span></p>
+        <p>予約完了</p>
+    </section>
+
+    <!----------------------
+            content
+    ------------------------>
+    <section id="selectRoomTop" class="wrapper">
+        <img img src="/img/selectRoom0.jpg" alt="img">
+        <div>
+            <h4>【ノンフレキシブルレート】室料のみ 7~20階</h6>
+            <p>◆素泊まり ◆現地払い ◆in 15:00~24:00 / out 11:00まで</p>
+            <p>ご予約時の客室タイプに応じた一般料金。ご予約後の予定変更にも柔軟に対応いたします。また、宿泊日数の制限や除外日もなくご利用いただけます。</p>
+        </div>
+    </section>
+    <hr><br>
+    <article id="selectRoom" class="wrapper">
+        <form th:action="@{/select/roomSelect}" method="post">
+            <!----------------------
+                    Suite
+            ------------------------>
+            <section id="suite">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom1.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1キング 高層階スイート</p>
+                        <span>◆禁煙 ◆84.00m ◆1~8名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="suitePrice" th:text="${suiteRoomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Suite">
+                            <p>今すぐ予約</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Deluxe
+            ------------------------>
+            <section id="deluxe">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom2.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1キング デラックス</p>
+                        <span>◆禁煙 ◆48.00m ◆1~6名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="deluxePrice" th:text="${deluxeRoomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Deluxe">
+                            <p>今すぐ予約</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Superior
+            ------------------------>
+            <section id="superior">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom3.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1クイーン スイート</p>
+                        <span>◆禁煙 ◆38.00m ◆1~4名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="superiorPrice" th:text="${SuperiorRoomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Superior">
+                            <p>今すぐ予約</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Standard
+            ------------------------>
+            <section id="standard">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom4.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>2シングル スタンダード</p>
+                        <span>◆禁煙 ◆27.00m ◆1~2名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="standardPrice" th:text="${standardRoomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Standard">
+                            <p>今すぐ予約</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!----------------------
+                    Economy
+            ------------------------>
+            <section id="economy">
+                <table>
+                    <td class="div1"><img img src="/img/selectRoom5.jpg" alt="img"></td>
+
+                    <td class="div2">
+                        <p>1シングル エコノミー</p>
+                        <span>◆禁煙 ◆27.00m ◆1~2名</span>
+                    </td>
+
+                    <td class="div3">
+                        <span class="text">(税サ込)</span>
+                        <span class="price" id="economyPrice" th:text="${economyRoomPrice}" ></span>
+                        <span class="text">円</span>
+                    </td>
+
+                    <td class="div4">
+                        <span>残り〇室</span>
+                    </td>
+                    
+                    <td class="div5">
+                        <button type="submit"><p>詳細</p></button>
+                    </td>
+
+                    <td class="div6">
+                        <button type="submit" name="roomSelect" value="Economy">
+                            <p>今すぐ予約</p>
+                        </button>
+                    </td>
+                </table>
+            </section>
+
+            <!--日程-->
+            <input type="hidden" name="checkIn" th:value="${userData.checkIn}">
+            <input type="hidden" name="checkOut" th:value="${userData.checkOut}">
+            <!--大人/子供の人数-->
+            <input type="hidden" name="adult" th:value="${userData.adult}">
+            <input type="hidden" name="child" th:value="${userData.child}">
+        </form>
+    </article>
+
+    <script>
+        numComma("suitePrice");
+        numComma("deluxePrice");
+        numComma("superiorPrice");
+        numComma("standardPrice");
+        numComma("economyPrice");
+
+        // 3桁ごとにカンマを表示する処理を呼び出す
+        function numComma(id) {
+            var num = Number(document.getElementById(id).textContent);
+            document.getElementById(id).textContent = num.toLocaleString();
+        }
+    </script>
+</body>
+</html>

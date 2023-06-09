@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+body {
+    width: 900px;
+    margin: 0 auto;
+}
+/* header */
+header {
+    display: flex;
+    justify-content: space-between;
+}
+header button {
+    border: none;
+    background: none;
+}
+header p {
+    font-family: 'Crimson Text', serif;
+}
+header form button {
+    margin-top: 10px;
+}
+header img {
+    border: solid 2px black;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    cursor: hand;
+}
+
+/* flow */
+#flow {
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+}
+#flow p {
+    font-family: 'Crimson Text', serif;
+    cursor: pointer;
+    cursor: hand;
+}
+#flow .now {
+    font-weight: bold;
+}
+#flow p span {
+    padding: 0px 20px 0px 15px;
+}
+#flow p span::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    display: inline-block;
+    transform: rotate(45deg);
+}
+
+/* wrapper */
+.wrapper {
+    margin: 0 20px;
+}
+
+/* a */
+a {
+    text-decoration: none;
+}

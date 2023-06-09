@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+/* 濃い緑：rgb(45, 97, 32); */
+/* 薄い緑：rgb(223, 252, 200); */
+
+#completed .completed_text {
+    display: flex;
+    border: solid 1px rgb(105, 105, 105);
+    background-color: rgb(241, 232, 230);
+    padding: 10px;
+}
+#completed .completed_left {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(241, 232, 230);
+    background-color: rgb(189, 164, 158);
+}
+#completed .completed_right {
+    width: 95%;
+    margin: -15px auto -10px 10px;
+    margin-bottom: -10px;
+}
+#completed .completed_right .title {
+    font-weight: bold;
+}
+#completed .completed_right .text {
+    margin-top: -2px;
+}
+
+#detail_content {
+    border: solid 1px rgb(105, 105, 105);
+    background-color: rgb(235, 235, 235);
+    padding: 10px 44px;
+}
+#detail {
+    display: flex;
+}
+#detail .detail_left {
+    width: 65%;
+}
+#detail .detail_left .title {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+#detail .detail_left .room {
+    font-size: 20px;
+    font-weight: bold;
+}
+#detail .detail_right {
+    width: 35%;
+}
+#detail .detail_right .check {
+    font-size: smaller;
+}
+#detail .detail_right .date {
+    font-size: larger;
+}
+#detail hr {
+    width: 100%;
+    border: dashed 1px;
+}
+#detail p {
+    margin: 0;
+}
+.price {
+    display: flex;
+    justify-content: end;
+    margin-right: 30px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+input[type="submit"].login {
+    width: 112px;
+    height: 37px;
+    border-radius: 5px;
+    background-clip: padding-box;
+    background-color: rgb(189, 164, 158);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+
+input[type="submit"].login:hover {
+    background-color: rgba(189, 164, 158, 0.8);
+    border: 1px solid rgba(189, 164, 158, 0.8);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
