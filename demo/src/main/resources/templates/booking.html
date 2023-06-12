@@ -35,15 +35,44 @@
     <h2>Let's Booking!</h2>
 
     <form action="/booking" method="post">
-        <label for="name">予約者名:</label>
-        <input type="text" id="name" name="name"/>
-        
-        <label for="email">メールアドレス:</label>
-        <input type="email" id="email" name="email"/>
+        <h3>予約者情報</h3>
+        <!-----名前----->
+        <label for="nameFamily">予約者名(性)</label>
+        <input type="text" id="nameFamily" name="nameFamily"/>
 
+        <label for="name">予約者名(名)</label>
+        <input type="text" id="name" name="name"/>
+
+        <label for="nameKana">セイ(カナ・英字)</label>
+        <input type="text" id="nameFamilyKana" name="nameFamilyKana"/>
+
+        <label for="nameKana">名(カナ・英字)</label>
+        <input type="text" id="nameKana" name="nameKana"/>
+
+        <!-----性別----->
+        <label for="sex">性別</label>
+        <input type="radio" id="sex" name="sex" value="male" checked/>男性
+        <input type="radio" id="sex" name="sex" value="female"/>女性
+        <input type="radio" id="sex" name="sex" value="female"/>その他
+
+        <!-----電話番号----->
         <label for="tel">電話番号:</label>
         <input type="tel" id="tel" name="tel"/>
 
+        <!-----メールアドレス----->
+        <label for="email">メールアドレス:</label>
+        <input type="email" id="email" name="email"/>
+
+        <!-----メルマガ----->
+        <label for="magazine">ご入力されたメールアドレスにホテルからお知らせメールやメールマガジンをお送りしてもよろしいでしょうか。</label>
+        <input type="radio" id="magazine" name="magazine" value="yes" checked/>はい
+        <input type="radio" id="magazine" name="magazine" value="no"/>いいえ
+
+        <button type="submit">予約確定</button>
+
+        <!---------------------------
+            以下は非表示のコンテンツ
+        ----------------------------->
         <!--日程-->
         <input type="hidden" name="checkIn" th:value="${userData.checkIn}">
         <input type="hidden" name="checkOut" th:value="${userData.checkOut}">
@@ -53,8 +82,6 @@
         <!--客室タイプ-->
         <input type="hidden" name="room" th:value="${userData.room}">
         <input type="hidden" name="price" th:value="${userData.price}">
-
-        <button type="submit">予約確定</button>
     </form>
 </body>
 </html>

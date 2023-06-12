@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,11 +80,6 @@ public class BookingController {
         }
     }
 
-    @GetMapping("/increase")
-    public String countNumber() {
-        return "selectDate";
-    }
-
 
     /* -------------------
         部屋の選択
@@ -122,8 +116,6 @@ public class BookingController {
 			userData.setRoom(userData.getRoom()); // Set the selected room value
 			userRepository.save(userData);
 		}
-
-		model.addAttribute("userDataList", userRepository.findAll());
 		return "completed";
 	}
 }

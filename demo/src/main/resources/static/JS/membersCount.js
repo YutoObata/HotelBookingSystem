@@ -1,3 +1,6 @@
+/* -------------------------------------
+    大人，子供の人数の + - ボタンの動き
+--------------------------------------*/
 function increaseAdultCount() {
     var countElement = document.getElementById("adultCount");
     var count = parseInt(countElement.innerText);
@@ -34,6 +37,9 @@ function decreaseChildCount() {
     }
 }
 
+/* -------------------------------------
+    宿泊人数が0,0のときのエラーメッセージ
+--------------------------------------*/
 function validateMemberCount() {
     var adultCount = parseInt(document.getElementById("adultCount").innerText);
     var childCount = parseInt(document.getElementById("childCount").innerText);

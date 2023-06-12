@@ -15,7 +15,10 @@ public class UserData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nameFamily;
     private String name;
+    private String nameFamilyKana;
+    private String nameKana;
     private int tel;
     private String email;
     private String checkIn;
@@ -30,11 +33,15 @@ public class UserData {
         this.child = 0;
     }
     
-    public UserData(String name, int tel, String email,
+    public UserData(String nameFamily, String name, String nameFamilyKana, String nameKana, 
+                    int tel, String email,
                     String checkIn, String checkOut,
                     int adult, int child, 
                     String room, int price) {
+        this.nameFamily = nameFamily;
         this.name = name;
+        this.nameFamilyKana = nameFamilyKana;
+        this.nameKana = nameKana;
         this.tel = tel;
         this.email = email;
         this.checkIn = checkIn;
