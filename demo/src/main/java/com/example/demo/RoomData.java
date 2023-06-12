@@ -20,4 +20,6 @@ public class RoomData {
         }
         return 0;
     }
+
+    // 客室のタイトル
 }

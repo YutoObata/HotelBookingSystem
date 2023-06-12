@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+h3 {
+    margin-top: 30px;
+}
+/* 情報入力 */
 .bookingHr {
     border: solid 1px black;
     width: 100%;
@@ -25,6 +29,62 @@
     font-size: 12px;
     margin-top: -15px;
     margin-bottom: 20px;
+}
+/* 内容確認 */
+table {
+    margin-top: -10px;
+}
+
+table img {
+    width: 25px;
+    margin-right: 8px;
+}
+/* 支払関連 */
+#pay {
+    display: flex;
+    gap: 30px;
+}
+.howToPay {
+    width: 65%;
+}
+.totalPay {
+    width: 35%;
+}
+.totalPayDiv {
+    padding: 10px;
+    background-color: rgb(241, 232, 230);
+}
+.totalPayDiv p {
+    margin: 0;
+}
+
+#priceValue {
+    font-size: 32px;
+    font-weight: bold;
+}
+.tax {
+    text-align: end;
+}
+
+button[name="next"] {
+    height: 40px;
+    align-items: center;
+    border-radius: 5px;
+    /* background-clip: padding-box; */
+    background-color: rgb(189, 164, 158);
+    border: none;
+    color: #fff;
+    display: block;
+    transition: 0.5s;
+    margin: 50px auto 20px;
+}
+button[name="next"]:hover {
+    background-color: rgba(189, 164, 158, 0.8);
+    cursor: pointer;
+    transition: 0.5s;
+}
+button p {
+    margin: 5px 10px;
 }
 
 /**/

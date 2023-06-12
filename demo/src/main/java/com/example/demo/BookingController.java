@@ -92,7 +92,7 @@ public class BookingController {
 
         userData.setRoom(room);
         userData.setPrice(totalPrice);
-        
+        model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("userData", userData);
 		return "booking";
 	}

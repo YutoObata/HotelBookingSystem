@@ -104,8 +104,44 @@
             ------------------------>
             <h3>予約内容の確認</h2>
             <hr class="bookingHr">
-            
             <div  class="wrapper">
+                <h4>予約者情報</h4>
+                <table>
+                    <tr>
+                        <td ><img src="/img/booking_icon_1.jpg" alt="img"></td>
+                        <td>ヨコハマ インターコンチネンタルホテル</td>
+                    </tr>
+                    <tr>
+                        <td><img src="/img/booking_icon_2.jpg" alt="img"></td>
+                        <td>【ノンフレキシブルレート】15時チェックイン-11時チェックアウト(室料のみ)</td>
+                    </tr>
+                    <tr>
+                        <td><img src="/img/booking_icon_3.jpg" alt="img"></td>
+                        <td><span>客室:</span>
+                            <span class="room" th:text="${userData.room}"></span>
+                            <span>タイプ</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/img/booking_icon_4.jpg" alt="img"></td>
+                        <td><span th:text="${userData.checkIn}"></span>
+                            <span>～</span>
+                            <span th:text="${userData.checkOut}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="/img/booking_icon_5.jpg" alt="img"></td>
+                        <td>
+                            <span>大人</span>
+                            <span th:text="${userData.adult}"></span>
+                            <span>名</span>
+                            
+                            <span>子供</span>
+                            <span th:text="${userData.child}"></span>
+                            <span>名</span>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <!----------------------
@@ -113,12 +149,30 @@
             ------------------------>
             <h3>お支払い金額/お支払い方法</h2>
             <hr class="bookingHr">
-            
-            <div  class="wrapper">
+            <div id="pay" class="wrapper">
+                <section class="howToPay">
+                    <h4>お支払い方法</h4>
+                </section>
+                <section class="totalPay">
+                    <h4>お支払い金額</h4>
+                    <div class="totalPayDiv">
+                        <p>宿泊金額 合計</p>
+                        <div class="tax">
+                            <span id="priceValue" th:text="${totalPrice}"></span>
+                            <span style="font-weight: bold;">円</span>
+                        </div>
+                    <p class="tax">(税込)</p>
+                    </div>
+                    
+                </section>
+                
             </div>
-
+            <div class="parent-container">
+                <button type="submit" name="next" value="Next" onclick="validateMemberCount()">
+                    <p>予約を確定する</p>
+                </button>
+            </div>
             
-            <button type="submit">予約確定</button>
 
             <!---------------------------
                 以下は非表示のコンテンツ
@@ -136,6 +190,14 @@
             
         </form>
     </section>
+    <script>
+        numComma("priceValue");
 
+        // 3桁ごとにカンマを表示する処理を呼び出す
+        function numComma(id) {
+            var num = Number(document.getElementById(id).textContent);
+            document.getElementById(id).textContent = num.toLocaleString();
+        }
+    </script>
 </body>
 </html>

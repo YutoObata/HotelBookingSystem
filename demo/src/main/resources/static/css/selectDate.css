@@ -45,19 +45,18 @@ article #member {
 #adultCount, #childCount {
     margin-left: 30px;
     margin-right: 5px;
-} 
+}
 
 button[name="next"] {
     height: 40px;
     align-items: center;
     border-radius: 5px;
-    /* background-clip: padding-box; */
     background-color: rgb(189, 164, 158);
     border: none;
     color: #fff;
     display: block;
     transition: 0.5s;
-    margin-top: 50px;
+    margin: 50px;
 }
 button[name="next"]:hover {
     background-color: rgba(189, 164, 158, 0.8);
