@@ -67,17 +67,11 @@ public class BookingController {
             userData.setChild(child);
 
             // 次のページで表示する各客室の値段を取得
-            int suiteRoomPrice = roomData.getPrice("Suite");
-            int deluxeRoomPrice = roomData.getPrice("Deluxe");
-            int superiorRoomPrice = roomData.getPrice("Superior");
-            int standardRoomPrice = roomData.getPrice("Standard");
-            int economyRoomPrice = roomData.getPrice("Economy");
-            
-            model.addAttribute("suiteRoomPrice", suiteRoomPrice);
-            model.addAttribute("deluxeRoomPrice", deluxeRoomPrice);
-            model.addAttribute("SuperiorRoomPrice", superiorRoomPrice);
-            model.addAttribute("standardRoomPrice", standardRoomPrice);
-            model.addAttribute("economyRoomPrice", economyRoomPrice);
+            model.addAttribute("suiteRoomPrice", roomData.getPrice("Suite"));
+            model.addAttribute("deluxeRoomPrice", roomData.getPrice("Deluxe"));
+            model.addAttribute("SuperiorRoomPrice", roomData.getPrice("Superior"));
+            model.addAttribute("standardRoomPrice", roomData.getPrice("Standard"));
+            model.addAttribute("economyRoomPrice", roomData.getPrice("Economy"));
             model.addAttribute("userData", userData);
             return "selectRoom";
 
