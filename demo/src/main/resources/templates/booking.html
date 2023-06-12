@@ -66,6 +66,10 @@
                         <input class="form-style" type="text" id="nameKana" name="nameKana"/>
                     </div>
                 </div>
+                
+                <p id="errorMessage" style="color: red;"></p>
+
+
                 <p class="grayText">※ミドルネームがある場合は、「名」の欄にファーストネームに続けてご入力ください。</p>
                 <p class="grayText">※パスポート上にスペース、ドット(.)、()などが明記されている場合は、それらを除き入力してください。</p>
 
@@ -225,7 +229,7 @@
             </div>
 
             <div class="parent-container">
-                <button type="submit" name="next" value="Next" onclick="validateMemberCount()">
+                <button type="submit" name="next" value="Next" onclick="validateName()">
                     <p>予約を確定する</p>
                 </button>
             </div>
@@ -247,6 +251,7 @@
             
         </form>
     </section>
+
     <script>
         numComma("priceValue");
 

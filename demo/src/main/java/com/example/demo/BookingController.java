@@ -86,7 +86,7 @@ public class BookingController {
     -------------------- */
     @PostMapping("/select/roomSelect")
 	public String selectRoom(@RequestParam("roomSelect") String room,
-							UserData userData, RoomData roomData, Model model) {
+                            UserData userData, RoomData roomData, Model model) {
         int roomPrice = roomData.getPrice(room);
         int totalPrice = roomPrice * nights;
 
@@ -102,9 +102,17 @@ public class BookingController {
         個人情報入力
     -------------------- */
     @PostMapping("/booking")
-    public String booking(@ModelAttribute @Validated UserData userData, BindingResult bindingResult, Model model) {
+    public String booking(@ModelAttribute @Validated UserData userData,
+						@RequestParam("nameFamily") String nameFamily, @RequestParam("name") String name,
+                        @RequestParam("nameFamilyKana") String nameFamilyKana, @RequestParam("nameKana") String nameKana,
+                        BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "booking";
+        }
+
+        // 漢字，カタカナチェック
+        if (nameFamily.equals("a")) {
+            System.out.println(1111);
         }
 
         UserData existingData = userRepository.findByName(userData.getName());
