@@ -152,10 +152,68 @@
             <div id="pay" class="wrapper">
                 <section class="howToPay">
                     <h4>お支払い方法</h4>
+                    <div class="bookingDiv">
+                        <input type="radio" id="howToPay" name="howToPay" value="local" onchange="handlePaymentOption()"/>現地払い
+                        <input type="radio" id="howToPay" name="howToPay" value="web" checked onchange="handlePaymentOption()"/>Web決済
+                        <p class="grayText">※ご予約確定後にお支払方法の変更はできません。</p>
+                        <div class="paypay">
+                            <p>使用できるカード</p>
+                            <ul>
+                                <li><img src="/img/card_JCB.png" alt="jcb"></li>
+                                <li><img src="/img/card_VISA.png" alt="visa"></li>
+                                <li><img src="/img/card_MASTER.png" alt="master"></li>
+                                <li><img src="/img/card_AMEX.png" alt="amex"></li>
+                                <li><img src="/img/card_DINERS.png" alt="diners"></li>
+                            </ul>
+                            
+                            <div class="form-item">
+                                <label class="formLabel">カード番号</label>
+                                <input class="form-style-number" type="text"/>
+                            </div>
+
+                            <div class="form-item" style="width: 150%;">
+                                <select class="form-item-card">
+                                    <option value="" style="display: none;">有効期限 月</option>
+                                    <option value=”item1”>01</option>
+                                    <option value=”item2”>02</option>
+                                    <option value=”item3”>03</option>
+                                    <option value=”item4”>04</option>
+                                    <option value=”item5”>05</option>
+                                    <option value=”item6”>06</option>
+                                    <option value=”item7”>07</option>
+                                    <option value=”item8”>08</option>
+                                    <option value=”item9”>09</option>
+                                    <option value=”item10”>10</option>
+                                    <option value=”item11”>11</option>
+                                    <option value=”item12”>12</option>
+                                </select>
+                                <span style="margin: 0 10px; color: #aaa;">/</span>
+                                <select class="form-item-card">
+                                    <option value="" style="display: none;">有効期限 年</option>
+                                    <option value=”item1”>2023</option>
+                                    <option value=”item2”>2024</option>
+                                    <option value=”item3”>2025</option>
+                                    <option value=”item4”>2026</option>
+                                    <option value=”item5”>2027</option>
+                                    <option value=”item6”>2028</option>
+                                    <option value=”item7”>2029</option>
+                                    <option value=”item8”>2030</option>
+                                    <option value=”item9”>2031</option>
+                                    <option value=”item10”>2032</option>
+                                    <option value=”item11”>2033</option>
+                                </select>
+                            </div>
+
+                            <div class="form-item">
+                                <label class="formLabel">セキュリティコード</label>
+                                <input class="form-style-number security-code" type="text" />
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section class="totalPay">
                     <h4>お支払い金額</h4>
-                    <div class="totalPayDiv">
+                    <div class="bookingDiv">
                         <p>宿泊金額 合計</p>
                         <div class="tax">
                             <span id="priceValue" th:text="${totalPrice}"></span>
@@ -163,10 +221,9 @@
                         </div>
                     <p class="tax">(税込)</p>
                     </div>
-                    
                 </section>
-                
             </div>
+
             <div class="parent-container">
                 <button type="submit" name="next" value="Next" onclick="validateMemberCount()">
                     <p>予約を確定する</p>
