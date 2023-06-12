@@ -7,6 +7,9 @@
     <!--css-->
     <link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/booking.css}" rel="stylesheet" type="text/css"/>
+    <!--js-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" n="anonymous"></script>
+    <script src="/JS/booking.js"></script>
 </head>
 <body>
     <!----------------------
@@ -32,56 +35,107 @@
     <!----------------------
             content
     ------------------------>
-    <h2>Let's Booking!</h2>
+    <section id="booking">
+        <form id="form" action="/booking" method="post">
+            <!----------------------
+                予約情報の入力
+            ------------------------>
+            <h3>予約者情報の入力</h2>
+            <hr class="bookingHr">
+            <div  class="wrapper">
+                <h4>予約者情報</h4>
+                <p class="grayText">※日本語以外の言語の方は、半角英数字にてご入力お願いいたします。</p>
+                <!-----名前----->
+                <div id="bookingName">
+                    <div class="form-item">
+                        <label class="formLabel" for="nameFamily">予約者名(性)<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
+                        <input class="form-style" type="text" id="nameFamily" name="nameFamily"/>
+                    </div>
+                    <div class="form-item">
+                        <label class="formLabel" for="name">予約者名(名)<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
+                        <input class="form-style" type="text" id="name" name="name"/>
+                    </div>
+                </div>
+                <div id="bookingName">
+                    <div class="form-item">
+                        <label class="formLabel" for="nameKana">セイ(カナ・英字)<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
+                        <input class="form-style" type="text" id="nameFamilyKana" name="nameFamilyKana"/>
+                    </div>
+                    <div class="form-item">
+                        <label class="formLabel" for="nameKana">名(カナ・英字)<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
+                        <input class="form-style" type="text" id="nameKana" name="nameKana"/>
+                    </div>
+                </div>
+                <p class="grayText">※ミドルネームがある場合は、「名」の欄にファーストネームに続けてご入力ください。</p>
+                <p class="grayText">※パスポート上にスペース、ドット(.)、()などが明記されている場合は、それらを除き入力してください。</p>
 
-    <form action="/booking" method="post">
-        <h3>予約者情報</h3>
-        <!-----名前----->
-        <label for="nameFamily">予約者名(性)</label>
-        <input type="text" id="nameFamily" name="nameFamily"/>
+                <!-----性別----->
+                <div id="BookingSex">
+                    <label for="sex">性別<span style="color: red; font-size: 12px; margin-left: 15px; margin-right: 20px;">※必須</span></label>
+                    <input type="radio" id="sex" name="sex" value="male" checked/>男性
+                    <input type="radio" id="sex" name="sex" value="female"/>女性
+                    <input type="radio" id="sex" name="sex" value="female"/>その他
+                </div>
 
-        <label for="name">予約者名(名)</label>
-        <input type="text" id="name" name="name"/>
+                <!-----電話番号----->
+                <div id="BookingTel" class="form-item">
+                    <label class="formLabel" for="tel">電話番号<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
+                    <input class="form-style-tel" type="tel" id="tel" name="tel"/>
+                </div>
+                <p class="grayText">※当日のご連絡つく電話番号でお願いいたします。</p>
 
-        <label for="nameKana">セイ(カナ・英字)</label>
-        <input type="text" id="nameFamilyKana" name="nameFamilyKana"/>
+                <!-----メールアドレス----->
+                <div id="BookingMail" class="form-item">
+                    <label class="formLabel" for="email">メールアドレス<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
+                    <input class="form-style-tel" type="email" id="email" name="email"/>
+                </div>
+                <p class="grayText">※パソコンからのメールを受信拒否する設定をされている場合は、メール受信を許可してください。</p>
 
-        <label for="nameKana">名(カナ・英字)</label>
-        <input type="text" id="nameKana" name="nameKana"/>
+                <!-----メルマガ----->
+                <div id="BookingMagazine">
+                    <label for="magazine">ご入力されたメールアドレスにホテルからお知らせメールやメールマガジンをお送りしてもよろしいでしょうか。</label><br>
+                    <input type="radio" id="magazine" name="magazine" value="yes" checked/>はい
+                    <input type="radio" id="magazine" name="magazine" value="no"/>いいえ
+                </div>
+            </div>
 
-        <!-----性別----->
-        <label for="sex">性別</label>
-        <input type="radio" id="sex" name="sex" value="male" checked/>男性
-        <input type="radio" id="sex" name="sex" value="female"/>女性
-        <input type="radio" id="sex" name="sex" value="female"/>その他
+            <!----------------------
+                予約内容の確認
+            ------------------------>
+            <h3>予約内容の確認</h2>
+            <hr class="bookingHr">
+            
+            <div  class="wrapper">
+            </div>
 
-        <!-----電話番号----->
-        <label for="tel">電話番号:</label>
-        <input type="tel" id="tel" name="tel"/>
+            <!----------------------
+                お支払い金額・方法
+            ------------------------>
+            <h3>お支払い金額/お支払い方法</h2>
+            <hr class="bookingHr">
+            
+            <div  class="wrapper">
+            </div>
 
-        <!-----メールアドレス----->
-        <label for="email">メールアドレス:</label>
-        <input type="email" id="email" name="email"/>
+            
+            <button type="submit">予約確定</button>
 
-        <!-----メルマガ----->
-        <label for="magazine">ご入力されたメールアドレスにホテルからお知らせメールやメールマガジンをお送りしてもよろしいでしょうか。</label>
-        <input type="radio" id="magazine" name="magazine" value="yes" checked/>はい
-        <input type="radio" id="magazine" name="magazine" value="no"/>いいえ
+            <!---------------------------
+                以下は非表示のコンテンツ
+            ----------------------------->
+            <!--日程-->
+            <input type="hidden" name="checkIn" th:value="${userData.checkIn}">
+            <input type="hidden" name="checkOut" th:value="${userData.checkOut}">
+            <!--大人/子供の人数-->
+            <input type="hidden" name="adult" th:value="${userData.adult}">
+            <input type="hidden" name="child" th:value="${userData.child}">
+            <!--客室タイプ-->
+            <input type="hidden" name="room" th:value="${userData.room}">
+            <input type="hidden" name="price" th:value="${userData.price}">
 
-        <button type="submit">予約確定</button>
+            
+        </form>
+    </section>
 
-        <!---------------------------
-            以下は非表示のコンテンツ
-        ----------------------------->
-        <!--日程-->
-        <input type="hidden" name="checkIn" th:value="${userData.checkIn}">
-        <input type="hidden" name="checkOut" th:value="${userData.checkOut}">
-        <!--大人/子供の人数-->
-        <input type="hidden" name="adult" th:value="${userData.adult}">
-        <input type="hidden" name="child" th:value="${userData.child}">
-        <!--客室タイプ-->
-        <input type="hidden" name="room" th:value="${userData.room}">
-        <input type="hidden" name="price" th:value="${userData.price}">
-    </form>
 </body>
 </html>

@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.bookingHr {
+    border: solid 1px black;
+    width: 100%;
+    float: left;
+    margin-top: -18px;
+}
+
+#booking {
+    display: block;
+}
+
+#bookingName {
+    display: flex;
+    width: 100%;
+}
+
+#BookingSex {
+    margin-bottom: 20px;
+}
+
+.grayText {
+    color: #8a8a8a;
+    font-size: 12px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+/**/
+div.form-item {
+    position: relative;
+    display: block;
+    margin-bottom: 25px;
+    margin-right: 225px;
+}
+
+input {
+    transition: all .2s ease;
+}
+
+input.form-style {
+    color: #8a8a8a;
+    display: flex;
+    width: 190%;
+    height: 30px;
+    padding: 5px 8%;
+    border: 1px solid #ccc;
+    background-clip: padding-box;
+    background-color: #fff;
+    font-family: 'HelveticaNeue', 'Arial', sans-serif;
+    font-size: 105%;
+    letter-spacing: .8px;
+}
+
+div.form-item label.formLabel {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    transition: all .4s ease;
+    color: #aaa;
+}
+
+.formTop {
+    top: -20px !important;
+    left: 0% !important;
+    background-color: #fff;
+    padding: 0 5px;
+    font-size: 12px;
+    color: #aaa !important;
+}
+
+input.form-style-tel {
+    color: #8a8a8a;
+    display: flex;
+    width: 129%;
+    height: 30px;
+    padding: 5px 2.5%;
+    border: 1px solid #ccc;
+    background-clip: padding-box;
+    background-color: #fff;
+    font-family: 'HelveticaNeue', 'Arial', sans-serif;
+    font-size: 105%;
+    letter-spacing: .8px;
+}
