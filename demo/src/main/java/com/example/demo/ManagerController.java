@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ManagerController {
     
     @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     RoomData roomData;
@@ -43,12 +43,15 @@ public class ManagerController {
             model.addAttribute("error", "客室を選択してください。");
             return "manager";
         }
-        System.out.println(roomData.getPrice("Suite"));
+        System.out.println(roomData.getPrice("Suite")+"->+" + roomPrice);
         switch (roomName) {
             case "01" :
+                if(roomPrice == 0) {
+                    roomData.setPrice("Suite", roomData.getPrice("Suite"));
+                }
                 roomData.setPrice("Suite", roomPrice);
         }
-        System.out.println("->" + roomPrice);
+        
         System.out.println(roomData.getPrice("Suite"));
         
         return "manager";
