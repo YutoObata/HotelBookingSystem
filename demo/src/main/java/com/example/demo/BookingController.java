@@ -106,13 +106,15 @@ public class BookingController {
 						@RequestParam("nameFamily") String nameFamily, @RequestParam("name") String name,
                         @RequestParam("nameFamilyKana") String nameFamilyKana, @RequestParam("nameKana") String nameKana,
                         BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+
+        if(inputFormCheck1(nameFamily) || inputFormCheck1(name)) { // 予約者名(性・名)の入力チェック
+            model.addAttribute("formErrorName1", "漢字またはひらがなで入力してください。");
             return "booking";
         }
 
-        // 漢字，カタカナチェック
-        if (nameFamily.equals("a")) {
-            System.out.println(1111);
+        if(inputFormCheck2(nameFamilyKana) || inputFormCheck2(nameKana)) { // セイ・メイ(カナ・英字)の入力チェック
+            model.addAttribute("formErrorName2", "カタカナまたは全角英字で入力してください。");
+            return "booking";
         }
 
         UserData existingData = userRepository.findByName(userData.getName());
@@ -126,4 +128,25 @@ public class BookingController {
 		}
 		return "completed";
 	}
+
+    /* ------------------------------------------------
+        名前入力チェック
+            漢字:"^[\u4e00-\u9fa5]+$" (「一」~「龥」)
+            ひらがな:"^[\\u3040-\\u309F]+$"
+            カタカナ:"^[\u30a0-\u30ff]+$"
+            全角英字:"^[a-zA-Z]+$"
+    ------------------------------------------------- */
+    public boolean inputFormCheck1(String str){
+        if (str.matches("^[\u4e00-\u9fa5]+$") || str.matches("^[\\u3040-\\u309F]+$")) {
+            return false;
+        }
+        else { return true; }
+    }
+
+    public boolean inputFormCheck2(String str){
+        if (str.matches("^[\u30a0-\u30ff]+$") || str.matches("^[a-zA-Z]+$")) {
+            return false;
+        }
+        else { return true; }
+    }
 }

@@ -46,6 +46,7 @@
                 <h4>予約者情報</h4>
                 <p class="grayText">※日本語以外の言語の方は、半角英数字にてご入力お願いいたします。</p>
                 <!-----名前----->
+                <p style="color: red; margin: 0;" th:text="${formErrorName1}"></p>
                 <div id="bookingName">
                     <div class="form-item">
                         <label class="formLabel" for="nameFamily">予約者名(性)<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
@@ -56,6 +57,8 @@
                         <input class="form-style" type="text" id="name" name="name"/>
                     </div>
                 </div>
+
+                <p style="color: red;margin: 0" th:text="${formErrorName2}"></p>
                 <div id="bookingName">
                     <div class="form-item">
                         <label class="formLabel" for="nameKana">セイ(カナ・英字)<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
@@ -66,10 +69,6 @@
                         <input class="form-style" type="text" id="nameKana" name="nameKana"/>
                     </div>
                 </div>
-                
-                <p id="errorMessage" style="color: red;"></p>
-
-
                 <p class="grayText">※ミドルネームがある場合は、「名」の欄にファーストネームに続けてご入力ください。</p>
                 <p class="grayText">※パスポート上にスペース、ドット(.)、()などが明記されている場合は、それらを除き入力してください。</p>
 

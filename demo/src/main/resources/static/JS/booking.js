@@ -16,7 +16,8 @@ $(document).ready(function(){
 });
 
 /* -------------------------------------
-    現地払いを選択したときに暗くする
+    現地払いを選択したときに
+	カード情報入力フォームを暗くする
 --------------------------------------*/
 function handlePaymentOption() {
 	var localPaymentRadio = document.getElementById("howToPay");
