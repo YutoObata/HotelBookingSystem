@@ -66,19 +66,19 @@
         <!----------------------
                 宿泊人数
         ------------------------>
-        <section  id="member">
+        <section id="member">
             <p>宿泊人数を指定</p>
             <div class="adultCount">
                 <label>大人</label><span class="colon">:</span>
-                <button onclick="decreaseAdultCount()"><i class="op_minus"></i></button>
+                <button name="count" onclick="decreaseAdultCount()"><i class="op_minus"></i></button>
                 <span id="adultCount">1</span>
-                <button onclick="increaseAdultCount()"><i class="op_plus"></i></button>
+                <button name="count" onclick="increaseAdultCount()"><i class="op_plus"></i></button>
             </div>
             <div class="childCount">
                 <label>子供</label><span class="colon">:</span>
-                <button onclick="decreaseChildCount()"><i class="op_minus"></i></button>
+                <button name="count" onclick="decreaseChildCount()"><i class="op_minus"></i></button>
                 <span id="childCount">0</span>
-                <button onclick="increaseChildCount()"><i class="op_plus"></i></button>
+                <button name="count" onclick="increaseChildCount()"><i class="op_plus"></i></button>
             </div>
         </section>
     </article>

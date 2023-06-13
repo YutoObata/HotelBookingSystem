@@ -22,12 +22,17 @@ article #member {
     font-weight: bolder;
 }
 
+#date div {
+    margin-top: 22px;
+}
 #date div, #member div {
     margin-bottom: 15px;
 }
 
+
 #date div label, #member div label {
     display: inline-block;
+    height: 32px;
     width: 115px; /* 適切な幅に調整してください */
     text-align: left;
     margin-left: 20px;
@@ -40,11 +45,6 @@ article #member {
 .adultCount .colon,
 .childCount .colon {
     margin: auto 30px auto 20px;
-} 
-
-#adultCount, #childCount {
-    margin-left: 30px;
-    margin-right: 5px;
 }
 
 button[name="next"] {
@@ -77,20 +77,20 @@ button p {
 }
 .op_plus:before, .op_plus:after {
     display: block;
-    content: '';
-    background-color: #333;
+    content: " ";
+    background-color: #ffffff;
     border-radius: 10px;
     position: absolute;
     width: 18px;
-    height: 5px;
-    top: 7px;
+    height: 2px;
+    top: 10px;
     left: 0;
 }
 .op_plus:before {
-    width: 5px;
+    width: 2px;
     height: 18px;
-    top: 0;
-    left: 7px;
+    top: 2px;
+    left: 8px;
 }
 
 .op_minus {
@@ -102,12 +102,35 @@ button p {
 }
 .op_minus:after {
     display: block;
-    content: '';
-    background-color: #333;
-    border-radius: 10px;
+    content: " ";
+    background-color: #ffffff;
+    border-radius: 5px;
     position: absolute;
     width: 18px;
-    height: 5px;
-    top: 7px;
+    height: 2px;
+    top: 10px;
     left: 0;
+}
+
+#member #adultCount,
+#member #childCount {
+    border: solid 1px rgb(189, 164, 158);
+    /* padding: 5px 10px 1px 40px; */
+}
+#member #adultCount {
+    padding: 6px 10px 1px 40px;
+}
+#member #childCount {
+    padding: 5px 10px 1px 40px;
+}
+
+button[name="count"] {
+    align-items: center;
+    height: 32px;
+    background-color: rgb(189, 164, 158);
+    border: none;
+    color: #fff;
+    transition: 0.5s;
+    margin-right: -8px;
+    margin-left: -8px;
 }
