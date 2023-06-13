@@ -104,16 +104,32 @@ public class BookingController {
     @PostMapping("/booking")
     public String booking(@ModelAttribute @Validated UserData userData,
 						@RequestParam("nameFamily") String nameFamily, @RequestParam("name") String name,
-                        @RequestParam("nameFamilyKana") String nameFamilyKana, @RequestParam("nameKana") String nameKana,
-                        BindingResult bindingResult, Model model) {
+                        @RequestParam("nameFamilyKana") String nameFamilyKana, @RequestParam("nameKana") String nameKana, 
+                        @RequestParam("tel") String tel, @RequestParam("email") String email, 
+                        Model model) {
 
-        if(inputFormCheck1(nameFamily) || inputFormCheck1(name)) { // 予約者名(性・名)の入力チェック
+        boolean isNameInvalid = inputFormCheck1(nameFamily) || inputFormCheck1(name);
+        boolean isNameKanaInvalid = inputFormCheck2(nameFamilyKana) || inputFormCheck2(nameKana);
+        boolean isTelInvalid = inputFormCheckTel(tel);
+        boolean isEmailInvalid = inputFormCheckEmail(email);
+
+        if(isNameInvalid) { // 予約者名(性・名)の入力チェック
             model.addAttribute("formErrorName1", "漢字またはひらがなで入力してください。");
             return "booking";
         }
 
-        if(inputFormCheck2(nameFamilyKana) || inputFormCheck2(nameKana)) { // セイ・メイ(カナ・英字)の入力チェック
+        if(isNameKanaInvalid) { // セイ・メイ(カナ・英字)の入力チェック
             model.addAttribute("formErrorName2", "カタカナまたは全角英字で入力してください。");
+            return "booking";
+        }
+
+        if(isTelInvalid) { // 電話番号の入力チェック
+            model.addAttribute("formErrorTel", "電話番号は0x0 後ろ8桁、ハイフンなしで入力してください。");
+            return "booking";
+        }
+
+        if(isEmailInvalid) { // 電話番号の入力チェック
+            model.addAttribute("formErrorEmail", "正しい形式でメールアドレスを入力してください。");
             return "booking";
         }
 
@@ -131,7 +147,7 @@ public class BookingController {
 
     /* ------------------------------------------------
         名前入力チェック
-            漢字:"^[\u4e00-\u9fa5]+$" (「一」~「龥」)
+            漢字入力:"^[\u4e00-\u9fa5]+$" ( 一 ~ 龥 )
             ひらがな:"^[\\u3040-\\u309F]+$"
             カタカナ:"^[\u30a0-\u30ff]+$"
             全角英字:"^[a-zA-Z]+$"
@@ -145,6 +161,27 @@ public class BookingController {
 
     public boolean inputFormCheck2(String str){
         if (str.matches("^[\u30a0-\u30ff]+$") || str.matches("^[a-zA-Z]+$")) {
+            return false;
+        }
+        else { return true; }
+    }
+
+    /* ------------------------------------------------
+        電話番号入力チェック
+            電話番号:"^0[789]0\d{8}$"
+            ・090..or 080..or 070..
+            ・ハイフンなし
+    ------------------------------------------------- */
+    public boolean inputFormCheckTel(String str){
+        if (str.matches("^0[789]0\\d{8}$")) {
+            return false;
+        }
+        else { return true; }
+    }
+
+    /* メールアドレスの入力チェック */ 
+    public boolean inputFormCheckEmail(String str){
+        if (str.matches("^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")) {
             return false;
         }
         else { return true; }

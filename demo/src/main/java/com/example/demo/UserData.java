@@ -19,7 +19,7 @@ public class UserData {
     private String name;
     private String nameFamilyKana;
     private String nameKana;
-    private int tel;
+    private String tel;
     private String email;
     private String checkIn;
     private String checkOut;
@@ -34,7 +34,7 @@ public class UserData {
     }
     
     public UserData(String nameFamily, String name, String nameFamilyKana, String nameKana, 
-                    int tel, String email,
+                    String tel, String email,
                     String checkIn, String checkOut,
                     int adult, int child, 
                     String room, int price) {

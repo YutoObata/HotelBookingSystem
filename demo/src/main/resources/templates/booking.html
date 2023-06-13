@@ -81,6 +81,7 @@
                 </div>
 
                 <!-----電話番号----->
+                <p style="color: red;margin: 0" th:text="${formErrorTel}"></p>
                 <div id="BookingTel" class="form-item">
                     <label class="formLabel" for="tel">電話番号<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
                     <input class="form-style-tel" type="tel" id="tel" name="tel"/>
@@ -88,6 +89,7 @@
                 <p class="grayText">※当日のご連絡つく電話番号でお願いいたします。</p>
 
                 <!-----メールアドレス----->
+                <p style="color: red;margin: 0" th:text="${formErrorEmail}"></p>
                 <div id="BookingMail" class="form-item">
                     <label class="formLabel" for="email">メールアドレス<span style="color: red; font-size: 12px; margin-left: 15px;">※必須</span></label>
                     <input class="form-style-tel" type="email" id="email" name="email"/>
@@ -160,6 +162,7 @@
                         <input type="radio" id="howToPay" name="howToPay" value="web" checked onchange="handlePaymentOption()"/>Web決済
                         <p class="grayText">※ご予約確定後にお支払方法の変更はできません。</p>
                         <div class="paypay">
+                            <p id="errorMessage" style="color: red;"></p>
                             <p>使用できるカード</p>
                             <ul>
                                 <li><img src="/img/card_JCB.png" alt="jcb"></li>
@@ -209,7 +212,7 @@
 
                             <div class="form-item">
                                 <label class="formLabel">セキュリティコード</label>
-                                <input class="form-style-number security-code" type="text" />
+                                <input class="form-style-number security-code" type="text"/>
                             </div>
                         </div>
                     </div>
@@ -228,11 +231,10 @@
             </div>
 
             <div class="parent-container">
-                <button type="submit" name="next" value="Next" onclick="validateName()">
+                <button type="submit" name="next" value="Next">
                     <p>予約を確定する</p>
                 </button>
             </div>
-            
 
             <!---------------------------
                 以下は非表示のコンテンツ
@@ -247,7 +249,6 @@
             <input type="hidden" name="room" th:value="${userData.room}">
             <input type="hidden" name="price" th:value="${userData.price}">
 
-            
         </form>
     </section>
 
