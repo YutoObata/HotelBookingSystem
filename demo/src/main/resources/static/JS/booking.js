@@ -1,3 +1,54 @@
+/* -------------------------------------
+    詳細ボタンを押したとき
+--------------------------------------*/
+$(function() {
+    $(".detail").click(function(event) {
+        event.preventDefault(); // リンクのデフォルトの動作を無効化
+
+        var imageUrl = $(this).attr('href');
+        var roomDescription1 = $("#roomDescription1").text();
+		var roomDescription2 = $("#roomDescription2").text();
+        var roomDescription3 = $("#roomDescription3").text();
+		var roomDescription4 = $("#roomDescription4").text();
+        var roomDescription5 = $("#roomDescription5").text();
+		var roomDescription6 = $("#roomDescription6").text();
+        var roomDescription7 = $("#roomDescription7").text();
+
+        // モーダルウィンドウのHTMLを動的に生成し、画像と部屋の説明を表示
+        var modalHtml = '<div id="modal">';
+        modalHtml += '<div class="backGround"></div>';
+        modalHtml += '<div class="photo">';
+        modalHtml += '<img src="' + imageUrl + '" width="420" height="280">';
+		modalHtml += '<h3>' + roomDescription1 + '</h3>';
+        modalHtml += '<p>' + roomDescription2 + '</p>';
+		// modalHtml += '<p>' + roomDescription3 + '</p>';
+		modalHtml += '<p style="margin-bottom: -12px; font-size: 14px;">' + roomDescription4 + '</p>';
+		modalHtml += '<p style="font-size: 12px;">' + roomDescription5 + '</p>';
+		modalHtml += '<p style="margin-bottom: -12px; font-size: 14px;">' + roomDescription6 + '</p>';
+		modalHtml += '<p style="font-size: 12px;">' + roomDescription7 + '</p>';
+        modalHtml += '</div>';
+        modalHtml += '</div>';
+
+        $("body").append(modalHtml); // モーダルウィンドウのHTMLを追加
+		
+		$(".backGround").fadeIn();
+        $('.photo').fadeIn();
+
+        $(".backGround").click(function() {
+            // モーダルウィンドウをフェードアウトして削除
+            $("#modal").fadeOut(function() {
+                $(this).remove();
+            });
+        });
+    });
+});
+
+
+
+/* -------------------------------------
+    入力フォームをクリックしたときに
+	中の文字をずらす
+--------------------------------------*/
 $(document).ready(function(){
 	var formInputs = $('input[type="text"],input[type="tel"],input[type="email"]');
 	formInputs.focus(function() {

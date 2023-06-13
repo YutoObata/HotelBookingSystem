@@ -7,6 +7,9 @@
     <!--css-->
     <link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/selectRoom.css}" rel="stylesheet" type="text/css"/>
+    <!--js-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" n="anonymous"></script>
+    <script src="/JS/booking.js"></script>
 </head>
 <body>
     <!----------------------
@@ -48,11 +51,22 @@
             ------------------------>
             <section id="suite">
                 <table>
-                    <td class="div1"><img img src="/img/selectRoom1.jpg" alt="img"></td>
-
+                    <td class="div1">
+                        <img src="/img/selectRoom1.jpg" alt="img">
+                    </td>
+            
                     <td class="div2">
-                        <p>1キング 高層階スイート</p>
-                        <span>◆禁煙 ◆84.00m ◆1~8名</span>
+                        <!-- ポップアップの内容 -->
+                        
+                        <h3 id="roomDescription1" style="display: none;">【ノンフレキシブルレート】室料のみ 7~20階</h3>
+                        <p id="roomDescription2" style="display: none;">◆素泊まり ◆現地払い ◆in 15:00~24:00 / out 11:00</p>
+                        <p id="roomDescription4" style="display: none;">【客室備品・サービス】</p>
+                        <p id="roomDescription5" style="display: none;">バスタブ、ウォークインシャワー、トイレ（温水洗浄便座）、インターネット接続（Wi-Fi、有線LAN）、地上波・BSデジタル対応液晶テレビ、冷蔵庫、湯沸かしポット、加湿空気清浄機、金庫、電話、ヘアドライヤー、ナイティー、バスタオル、ハンドタオル、ウォッシュタオル</p>
+                        <p id="roomDescription6" style="display: none;">【アメニティ】</p>
+                        <p id="roomDescription7" style="display: none;">シャンプー、コンディショナー、液体ボディウォッシュ、石鹸、歯ブラシ、歯磨き粉、髭剃り、シェービングフォーム、シャワーキャップ、コットン、綿棒、くし、スリッパ、緑茶、紅茶、コーヒー、ミネラルウォーター</p>
+
+                        <p th:text="${suiteRoomText}"></p>
+                        <span>◆禁煙 ◆84.00m ◆1~<span th:text="${suiteRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
@@ -64,9 +78,9 @@
                     <td class="div4">
                         <span>残り〇室</span>
                     </td>
-                    
+
                     <td class="div5">
-                        <button type="submit"><p>詳細</p></button>
+                        <a href="/img/selectRoom1.jpg" class="detail">詳細</a>
                     </td>
 
                     <td class="div6">
@@ -85,8 +99,8 @@
                     <td class="div1"><img img src="/img/selectRoom2.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p>1キング デラックス</p>
-                        <span>◆禁煙 ◆48.00m ◆1~6名</span>
+                        <p th:text="${deluxeRoomText}"></p>
+                        <span>◆禁煙 ◆48.00m ◆1~<span th:text="${deluxeRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
@@ -98,9 +112,9 @@
                     <td class="div4">
                         <span>残り〇室</span>
                     </td>
-                    
+
                     <td class="div5">
-                        <button type="submit"><p>詳細</p></button>
+                        <a href="/img/selectRoom2.jpg" class="detail">詳細</a>
                     </td>
 
                     <td class="div6">
@@ -119,22 +133,22 @@
                     <td class="div1"><img img src="/img/selectRoom3.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p>1クイーン スイート</p>
-                        <span>◆禁煙 ◆38.00m ◆1~4名</span>
+                        <p th:text="${superiorRoomText}"></p>
+                        <span>◆禁煙 ◆38.00m ◆1~<span th:text="${superiorRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="superiorPrice" th:text="${SuperiorRoomPrice}"></span>
+                        <span class="price" id="superiorPrice" th:text="${superiorRoomPrice}"></span>
                         <span class="text">円</span>
                     </td>
 
                     <td class="div4">
                         <span>残り〇室</span>
                     </td>
-                    
+
                     <td class="div5">
-                        <button type="submit"><p>詳細</p></button>
+                        <a href="/img/selectRoom3.jpg" class="detail">詳細</a>
                     </td>
 
                     <td class="div6">
@@ -153,8 +167,8 @@
                     <td class="div1"><img img src="/img/selectRoom4.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p>2シングル スタンダード</p>
-                        <span>◆禁煙 ◆27.00m ◆1~2名</span>
+                        <p th:text="${standardRoomText}"></p>
+                        <span>◆禁煙 ◆27.00m ◆1~<span th:text="${standardRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
@@ -166,9 +180,9 @@
                     <td class="div4">
                         <span>残り〇室</span>
                     </td>
-                    
+
                     <td class="div5">
-                        <button type="submit"><p>詳細</p></button>
+                        <a href="/img/selectRoom4.jpg" class="detail">詳細</a>
                     </td>
 
                     <td class="div6">
@@ -187,8 +201,8 @@
                     <td class="div1"><img img src="/img/selectRoom5.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p>1シングル エコノミー</p>
-                        <span>◆禁煙 ◆27.00m ◆1~2名</span>
+                        <p th:text="${economyRoomText}"></p>
+                        <span>◆禁煙 ◆27.00m ◆1~<span th:text="${economyRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
@@ -200,9 +214,9 @@
                     <td class="div4">
                         <span>残り〇室</span>
                     </td>
-                    
+
                     <td class="div5">
-                        <button type="submit"><p>詳細</p></button>
+                        <a href="/img/selectRoom5.jpg" class="detail">詳細</a>
                     </td>
 
                     <td class="div6">

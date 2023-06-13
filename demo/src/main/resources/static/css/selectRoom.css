@@ -93,3 +93,37 @@ button[name="roomSelect"]:hover {
 button p {
     margin: 5px 10px;
 }
+
+article form section table td a {
+    color: rgb(155, 134, 128);
+    border: solid 1px rgb(189, 164, 158);
+    padding: 10% 25%;
+    font-size: smaller;
+}
+
+
+.backGround {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 1;
+}
+
+.photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 420px;
+    height: 280px;
+    z-index: 2;
+    border-radius: 2%;
+    background-color: rgba(241, 232, 230, 0.9);
+    padding: 30px 100px 320px 100px;
+}
+

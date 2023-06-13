@@ -53,24 +53,37 @@ public class BookingController {
                 return "selectDate";
             }
 
-            Integer adult = Integer.parseInt(adults);
-            Integer child = Integer.parseInt(children);
-
             // 宿泊日数の計算
             this.nights = (int) ChronoUnit.DAYS.between(checkIn, checkOut);
 
             // DBに登録
             userData.setCheckIn(checkInDate);
             userData.setCheckOut(checkOutDate);
-            userData.setAdult(adult);
-            userData.setChild(child);
+            userData.setAdult(Integer.parseInt(adults));
+            userData.setChild(Integer.parseInt(children));
 
-            // 次のページで表示する各客室の値段を取得
+            // 次のページで表示する各客室の情報を取得
+            // スイート
             model.addAttribute("suiteRoomPrice", roomData.getPrice("Suite"));
+            model.addAttribute("suiteRoomText", roomData.getRoomText("Suite"));
+            model.addAttribute("suiteRoomCapacity", roomData.getRoomCapacity("Suite"));
+            // デラックス
             model.addAttribute("deluxeRoomPrice", roomData.getPrice("Deluxe"));
-            model.addAttribute("SuperiorRoomPrice", roomData.getPrice("Superior"));
+            model.addAttribute("deluxeRoomText", roomData.getRoomText("Deluxe"));
+            model.addAttribute("deluxeRoomCapacity", roomData.getRoomCapacity("Deluxe"));
+            // スーペリア
+            model.addAttribute("superiorRoomPrice", roomData.getPrice("Superior"));
+            model.addAttribute("superiorRoomText", roomData.getRoomText("Superior"));
+            model.addAttribute("superiorRoomCapacity", roomData.getRoomCapacity("Superior"));
+            // スタンダード
             model.addAttribute("standardRoomPrice", roomData.getPrice("Standard"));
+            model.addAttribute("standardRoomText", roomData.getRoomText("Standard"));
+            model.addAttribute("standardRoomCapacity", roomData.getRoomCapacity("Standard"));
+            // エコノミー
             model.addAttribute("economyRoomPrice", roomData.getPrice("Economy"));
+            model.addAttribute("economyRoomText", roomData.getRoomText("Economy"));
+            model.addAttribute("economyRoomCapacity", roomData.getRoomCapacity("Economy"));
+
             model.addAttribute("userData", userData);
             return "selectRoom";
 
