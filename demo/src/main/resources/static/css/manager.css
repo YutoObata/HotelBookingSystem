@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+th {
+    color: #ffffff;
+    background-color: #55b1df;
+    margin: auto;
+    padding: 5px 8px;
+}
+
+td {
+    text-align: center;
+    padding: 3px 5px;
+    border-bottom: solid 1px black;
+}

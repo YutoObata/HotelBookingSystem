@@ -19,13 +19,17 @@ public class BookingController {
     private int nights; // 宿泊日数
 
 	@Autowired
-	private UserRepository userRepository;
+	UserRepository userRepository;
+
+    @Autowired
+    RoomData roomData;
 
     /* -------------------
         Repository
     -------------------- */
     public BookingController(UserRepository userRepository) {
         this.userRepository = userRepository;
+        this.roomData = new RoomData();
     }
 
 
@@ -37,7 +41,7 @@ public class BookingController {
 							@RequestParam("checkOutDate") String checkOutDate,
 							@RequestParam(value = "adult", defaultValue = "1") String adults,
 							@RequestParam(value = "child", defaultValue = "0") String children, 
-							@ModelAttribute UserData userData, RoomData roomData,
+							@ModelAttribute UserData userData,
 							BindingResult bindingResult, Model model) {
 
         if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
@@ -99,7 +103,7 @@ public class BookingController {
     -------------------- */
     @PostMapping("/select/roomSelect")
 	public String selectRoom(@RequestParam("roomSelect") String room,
-                            UserData userData, RoomData roomData, Model model) {
+                            UserData userData, Model model) {
         int roomPrice = roomData.getPrice(room);
         int totalPrice = roomPrice * nights;
 
