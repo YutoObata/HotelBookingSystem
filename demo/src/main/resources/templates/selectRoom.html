@@ -57,26 +57,27 @@
             
                     <td class="div2">
                         <!-- ポップアップの内容 -->
-                        
                         <h3 id="roomDescription1" style="display: none;">【ノンフレキシブルレート】室料のみ 7~20階</h3>
                         <p id="roomDescription2" style="display: none;">◆素泊まり ◆現地払い ◆in 15:00~24:00 / out 11:00</p>
-                        <p id="roomDescription4" style="display: none;">【客室備品・サービス】</p>
-                        <p id="roomDescription5" style="display: none;">バスタブ、ウォークインシャワー、トイレ（温水洗浄便座）、インターネット接続（Wi-Fi、有線LAN）、地上波・BSデジタル対応液晶テレビ、冷蔵庫、湯沸かしポット、加湿空気清浄機、金庫、電話、ヘアドライヤー、ナイティー、バスタオル、ハンドタオル、ウォッシュタオル</p>
-                        <p id="roomDescription6" style="display: none;">【アメニティ】</p>
-                        <p id="roomDescription7" style="display: none;">シャンプー、コンディショナー、液体ボディウォッシュ、石鹸、歯ブラシ、歯磨き粉、髭剃り、シェービングフォーム、シャワーキャップ、コットン、綿棒、くし、スリッパ、緑茶、紅茶、コーヒー、ミネラルウォーター</p>
+                        <p id="roomDescription3" style="display: none;">【客室備品・サービス】</p>
+                        <p id="roomDescription4" style="display: none;">バスタブ、ウォークインシャワー、トイレ（温水洗浄便座）、インターネット接続（Wi-Fi、有線LAN）、地上波・BSデジタル対応液晶テレビ、冷蔵庫、湯沸かしポット、加湿空気清浄機、金庫、電話、ヘアドライヤー、ナイティー、バスタオル、ハンドタオル、ウォッシュタオル</p>
+                        <p id="roomDescription5" style="display: none;">【アメニティ】</p>
+                        <p id="roomDescription6" style="display: none;">シャンプー、コンディショナー、液体ボディウォッシュ、石鹸、歯ブラシ、歯磨き粉、髭剃り、シェービングフォーム、シャワーキャップ、コットン、綿棒、くし、スリッパ、緑茶、紅茶、コーヒー、ミネラルウォーター</p>
 
-                        <p th:text="${suiteRoomText}"></p>
-                        <span>◆禁煙 ◆84.00m ◆1~<span th:text="${suiteRoomCapacity}"></span>名</span>
+                        <p th:text="${SuiteRoomText}"></p>
+                        <span>◆禁煙 ◆84.00m ◆1~<span th:text="${SuiteRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="suitePrice" th:text="${suiteRoomPrice}"></span>
+                        <span class="price" id="suitePrice" th:text="${SuiteRoomPrice}"></span>
                         <span class="text">円</span>
                     </td>
 
                     <td class="div4">
-                        <span>残り〇室</span>
+                        <span>残り</span>
+                        <span style="font-size: larger;" th:text="${SuiteRoomNum}"></span>
+                        <span>室</span>
                     </td>
 
                     <td class="div5">
@@ -99,18 +100,20 @@
                     <td class="div1"><img img src="/img/selectRoom2.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p th:text="${deluxeRoomText}"></p>
-                        <span>◆禁煙 ◆48.00m ◆1~<span th:text="${deluxeRoomCapacity}"></span>名</span>
+                        <p th:text="${DeluxeRoomText}"></p>
+                        <span>◆禁煙 ◆48.00m ◆1~<span th:text="${DeluxeRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="deluxePrice" th:text="${deluxeRoomPrice}"></span>
+                        <span class="price" id="deluxePrice" th:text="${DeluxeRoomPrice}"></span>
                         <span class="text">円</span>
                     </td>
 
                     <td class="div4">
-                        <span>残り〇室</span>
+                        <span>残り</span>
+                        <span style="font-size: larger;" th:text="${DeluxeRoomNum}"></span>
+                        <span>室</span>
                     </td>
 
                     <td class="div5">
@@ -133,18 +136,20 @@
                     <td class="div1"><img img src="/img/selectRoom3.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p th:text="${superiorRoomText}"></p>
-                        <span>◆禁煙 ◆38.00m ◆1~<span th:text="${superiorRoomCapacity}"></span>名</span>
+                        <p th:text="${SuperiorRoomText}"></p>
+                        <span>◆禁煙 ◆38.00m ◆1~<span th:text="${SuperiorRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="superiorPrice" th:text="${superiorRoomPrice}"></span>
+                        <span class="price" id="superiorPrice" th:text="${SuperiorRoomPrice}"></span>
                         <span class="text">円</span>
                     </td>
 
                     <td class="div4">
-                        <span>残り〇室</span>
+                        <span>残り</span>
+                        <span style="font-size: larger;" th:text="${SuperiorRoomNum}"></span>
+                        <span>室</span>
                     </td>
 
                     <td class="div5">
@@ -167,18 +172,20 @@
                     <td class="div1"><img img src="/img/selectRoom4.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p th:text="${standardRoomText}"></p>
-                        <span>◆禁煙 ◆27.00m ◆1~<span th:text="${standardRoomCapacity}"></span>名</span>
+                        <p th:text="${StandardRoomText}"></p>
+                        <span>◆禁煙 ◆27.00m ◆1~<span th:text="${StandardRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="standardPrice" th:text="${standardRoomPrice}"></span>
+                        <span class="price" id="standardPrice" th:text="${StandardRoomPrice}"></span>
                         <span class="text">円</span>
                     </td>
 
                     <td class="div4">
-                        <span>残り〇室</span>
+                        <span>残り</span>
+                        <span style="font-size: larger;" th:text="${StandardRoomNum}"></span>
+                        <span>室</span>
                     </td>
 
                     <td class="div5">
@@ -201,18 +208,20 @@
                     <td class="div1"><img img src="/img/selectRoom5.jpg" alt="img"></td>
 
                     <td class="div2">
-                        <p th:text="${economyRoomText}"></p>
-                        <span>◆禁煙 ◆27.00m ◆1~<span th:text="${economyRoomCapacity}"></span>名</span>
+                        <p th:text="${EconomyRoomText}"></p>
+                        <span>◆禁煙 ◆27.00m ◆1~<span th:text="${EconomyRoomCapacity}"></span>名</span>
                     </td>
 
                     <td class="div3">
                         <span class="text">(税サ込)</span>
-                        <span class="price" id="economyPrice" th:text="${economyRoomPrice}"></span>
+                        <span class="price" id="economyPrice" th:text="${EconomyRoomPrice}"></span>
                         <span class="text">円</span>
                     </td>
 
                     <td class="div4">
-                        <span>残り〇室</span>
+                        <span>残り</span>
+                        <span style="font-size: larger;" th:text="${EconomyRoomNum}"></span>
+                        <span>室</span>
                     </td>
 
                     <td class="div5">

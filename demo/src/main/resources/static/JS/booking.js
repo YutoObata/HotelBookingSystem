@@ -8,10 +8,10 @@ $(function() {
         var imageUrl = $(this).attr('href');
         var roomDescription1 = $("#roomDescription1").text();
 		var roomDescription2 = $("#roomDescription2").text();
-		var roomDescription4 = $("#roomDescription4").text();
-        var roomDescription5 = $("#roomDescription5").text();
-		var roomDescription6 = $("#roomDescription6").text();
-        var roomDescription7 = $("#roomDescription7").text();
+		var roomDescription3 = $("#roomDescription3").text();
+        var roomDescription4 = $("#roomDescription4").text();
+		var roomDescription5 = $("#roomDescription5").text();
+        var roomDescription6 = $("#roomDescription6").text();
 
         // モーダルウィンドウのHTMLを動的に生成し、画像と部屋の説明を表示
         var modalHtml = '<div id="modal">';
@@ -20,10 +20,10 @@ $(function() {
             modalHtml += '<img src="' + imageUrl + '" width="420" height="280">';
 			modalHtml += '<h3>' + roomDescription1 + '</h3>';
 			modalHtml += '<p>' + roomDescription2 + '</p>';
-			modalHtml += '<p style="margin-bottom: -12px; font-size: 14px;">' + roomDescription4 + '</p>';
-			modalHtml += '<p style="font-size: 12px;">' + roomDescription5 + '</p>';
-			modalHtml += '<p style="margin-bottom: -12px; font-size: 14px;">' + roomDescription6 + '</p>';
-			modalHtml += '<p style="font-size: 12px;">' + roomDescription7 + '</p>';
+			modalHtml += '<p style="margin: 0px -28px; font-size: 14px;">' + roomDescription3 + '</p>';
+			modalHtml += '<p style="margin: 0px -16px 10px; font-size: 12px;">' + roomDescription4 + '</p>';
+			modalHtml += '<p style="margin: 0px -28px; font-size: 14px;">' + roomDescription5 + '</p>';
+			modalHtml += '<p style="margin: 0px -16px; font-size: 12px;">' + roomDescription6 + '</p>';
 			modalHtml += '</div>';
 			modalHtml += '</div>';
 
