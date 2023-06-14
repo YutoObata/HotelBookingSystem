@@ -31,6 +31,16 @@ public class ManagerController {
     public String manager(Model model) {
         List<UserData> userDataList = userRepository.findAll();
         model.addAttribute("userDataList", userDataList);
+
+        // 各客室の情報を取得してモデルに追加
+        String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
+        for (String roomType : roomTypes) {
+            model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
+            model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
+            model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
+            model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
+        }
+
         return "manager";
     }
 
@@ -41,9 +51,10 @@ public class ManagerController {
                         @RequestParam(value = "roomCapacity", defaultValue = "0") int roomCapacity,
                         @RequestParam(value = "roomNum", defaultValue = "0") int roomNum,
                         Model model) {
+                            
         if (roomName.equals("00")) {
             model.addAttribute("error", "客室を選択してください。");
-            return "manager";
+            return "redirect:/manager";
         }
 
         Map<String, String> roomMap = new HashMap<>();
@@ -59,7 +70,7 @@ public class ManagerController {
             updateRoomData(selectedRoom, roomPrice, roomCapacity, roomNum);
         }
 
-        return "manager";
+        return "redirect:/manager";
     }
 
     private void updateRoomData(String roomType, int roomPrice, int roomCapacity, int roomNum) {

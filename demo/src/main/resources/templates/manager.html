@@ -38,6 +38,44 @@
         </tr>
     </table>
     
+    <hr style="margin-top: 30px;">
+    <h2>客室情報</h2>
+    <table>
+        <tr>
+            <th style="width: 50px;"></th>
+            <th style="width: 80px;">Suite</th>
+            <th style="width: 80px;">Deluxe</th>
+            <th style="width: 80px;">Superior</th>
+            <th style="width: 80px;">Standard</th>
+            <th style="width: 80px;">Economy</th>
+        </tr>
+        <tr>
+            <td>価格</td>
+            <td th:text="${SuiteRoomPrice}"></td>
+            <td th:text="${DeluxeRoomPrice}"></td>
+            <td th:text="${SuperiorRoomPrice}"></td>
+            <td th:text="${StandardRoomPrice}"></td>
+            <td th:text="${EconomyRoomPrice}"></td>
+        </tr>
+        <tr>
+            <td>定員</td>
+            <td th:text="${SuiteRoomCapacity}"></td>
+            <td th:text="${DeluxeRoomCapacity}"></td>
+            <td th:text="${SuperiorRoomCapacity}"></td>
+            <td th:text="${StandardRoomCapacity}"></td>
+            <td th:text="${EconomyRoomCapacity}"></td>
+        </tr>
+        <tr>
+            <td>客室数</td>
+            <td th:text="${SuiteRoomNum}"></td>
+            <td th:text="${DeluxeRoomNum}"></td>
+            <td th:text="${SuperiorRoomNum}"></td>
+            <td th:text="${StandardRoomNum}"></td>
+            <td th:text="${EconomyRoomNum}"></td>
+        </tr>
+    </table>
+
+    <hr style="margin-top: 30px;">
     <h2>客室情報変更</h2>
     <form action="/roomDetail" method="post">
         <p style="color: red;margin: 0" th:text="${error}"></p>
@@ -51,17 +89,17 @@
         </select>
         <div>
             <label>客室価格</label>
-            <input type="number" name="roomPrice" min="1"/>
+            <input type="number" name="roomPrice" min="1" max="1000000"/>
             <span>円</span>
         </div>
         <div>
             <label>客室定員</label>
-            <input type="number" name="roomCapacity" min="1"/>
+            <input type="number" name="roomCapacity" min="1" max="10"/>
             <span>人</span>
         </div>
         <div>
             <label>客室数</label>
-            <input type="number" name="roomNum" min="1"/>
+            <input type="number" name="roomNum" min="1" max="10"/>
             <span>部屋</span>
         </div>
         <button type="submit" value="Next">

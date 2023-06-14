@@ -35,6 +35,22 @@
     <!----------------------
             content
     ------------------------>
+    <nav>
+        <ul>
+            <li><img src="/img/booking_icon_4.jpg" alt="img"></li>        
+            <li>
+                <span th:text="${userData.checkIn}"></span>
+                <span> ~ </span>
+                <span th:text="${userData.checkOut}"></span>
+            </li>
+            <li><img src="/img/booking_icon_5.jpg" alt="img"></li>    
+            <li>
+                <span>大人</span><span class="member" th:text="${userData.adult}"></span><span>名</span>
+                <span>子供</span><span class="member" th:text="${userData.child}"></span><span>名</span>
+            </li>
+        </ul>
+    </nav>
+
     <section id="selectRoomTop" class="wrapper">
         <img img src="/img/selectRoom0.jpg" alt="img">
         <div>
