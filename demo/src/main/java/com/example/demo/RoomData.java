@@ -32,7 +32,7 @@ public class RoomData {
         roomCapacityMap.put("Standard", 2);
         roomCapacityMap.put("Economy", 2);
 
-        roomCountMap.put("Suite", 2);
+        roomCountMap.put("Suite", 1);
         roomCountMap.put("Deluxe", 2);
         roomCountMap.put("Superior", 2);
         roomCountMap.put("Standard", 2);

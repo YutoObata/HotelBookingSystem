@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,8 +100,9 @@ public class BookingController {
         int roomCapacity = roomData.getRoomCapacity(room);
         int stayAdult = userData.getAdult();
         int stayChild = userData.getChild();
+        
+        String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
         if ( roomCapacity < stayAdult + stayChild ) {
-            String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
             for (String roomType : roomTypes) {
                 model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
                 model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
@@ -112,6 +112,19 @@ public class BookingController {
             model.addAttribute("error", "宿泊者数が客室の定員を超えています。");
             return "selectRoom";
         }
+
+        if ( roomData.getRoomNum(room) == 0 ) {
+            for (String roomType : roomTypes) {
+                model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
+                model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
+                model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
+                model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
+            }
+            model.addAttribute("error", "選択された客室は満室のため予約できません。");
+            return "selectRoom";
+        }
+
+        roomData.setRoomNum(room, roomData.getRoomNum(room)-1);
 		return "booking";
 	}
 

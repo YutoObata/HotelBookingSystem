@@ -1,2 +1,47 @@
 @charset "UTF-8";
 
+.slide_items {
+    margin: 0px;
+    padding: 0px;
+}
+
+.slide_items img {
+    width: 100%;
+}
+
+#slide_wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+table th, table td {
+    text-align: start;
+    padding: 10px 5px;
+    border-bottom: solid 1px rgb(155, 155, 155);
+}
+
+table td {
+    font-size: smaller;
+}
+
+button[value="gotoBooking"] {
+    height: 40px;
+    width: 140px;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgb(189, 164, 158);
+    border: none;
+    color: #fff;
+    display: block;
+    transition: 0.5s;
+    margin: 50px auto 20px;
+}
+button[value="gotoBooking"]:hover {
+    background-color: rgba(189, 164, 158, 0.8);
+    cursor: pointer;
+    transition: 0.5s;
+}
+button p {
+    margin: 5px 10px;
+}
+

@@ -54,7 +54,7 @@ public class ManagerController {
                             
         if (roomName.equals("00")) {
             model.addAttribute("error", "客室を選択してください。");
-            return "redirect:/manager";
+            return "manager";
         }
 
         Map<String, String> roomMap = new HashMap<>();

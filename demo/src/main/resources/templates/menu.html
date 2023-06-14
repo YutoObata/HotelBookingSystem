@@ -5,8 +5,13 @@
 	<title>Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
     <!--css-->
-	<link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css"/>
+	<link href="/css/headerStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    <!--js-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" n="anonymous"></script>
+    <script src="/JS/menu.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/slick-1.8.1/slick/slick.css}" />
+    <script th:src="@{/slick-1.8.1/slick/slick.min.js}"></script>
 </head>
 <body>
     <!----------------------
@@ -33,16 +38,76 @@
         <p>予約完了</p>
     </section>
 
-    
+    <!----------------------
+            content
+    ------------------------>
     <br>
-    <br>
-    <div class="menu">
-        <form th:action="@{/select}" method="post">
-            <button type="submit" name="mode" value="gotoBooking">
-                <p>予約へ</p>
-            </button>
-        </form>
+    <div id="slide_wrapper" class="wrapper">
+        <section style="width: 50%;">
+            <br><br>
+            <ul class="slide_items">
+                <li><img src="/img/hotel1.jpg"></li>
+                <li><img src="/img/hotel2.jpg"></li>
+                <li><img src="/img/hotel3.jpg"></li>
+                <li><img src="/img/hotel4.jpg"></li>
+                <li><img src="/img/hotel5.jpg"></li>
+                <li><img src="/img/hotel6.jpg"></li>
+                <li><img src="/img/hotel7.jpg"></li>
+            </ul>
+            <form th:action="@{/select}" method="post">
+                <button type="submit" name="mode" value="gotoBooking">
+                    <p>予約へ</p>
+                </button>
+            </form>
+        </section>
         
+        <section style="width: 50%;">
+            <p style="font-size: larger; font-weight: bold; margin: 0;">施設情報</p>
+            <hr style="border: solid 1px black;">
+            <table>
+                <tr>
+                    <th rowspan="2">所在地</th>
+                    <td style="border-bottom: none;">〒220-8522</td>
+                </tr>
+                <tr>
+                    <td>神奈川県横浜市西区みなとみらい1-1-1</td>
+                </tr>
+                <tr>
+                    <th>電話番号</th>
+                    <td>045-223-2300</td>
+                </tr>
+                <tr>
+                    <th>FAX</th>
+                    <td>045-221-0650</td>
+                </tr>
+                <tr>
+                    <th>チェックイン</th>
+                    <td>15:00~24:00</td>
+                </tr>
+                <tr>
+                    <th>チェックアウト</th>
+                    <td>11:00まで</td>
+                </tr>
+            </table>
+            <table>
+                <tr><th style="border: none;">キャンセル/前払い</th></tr>
+                <tr><td style="border: none; padding: 0px 5px;">■キャンセル料金の規定は宿泊プランにより異なります。ご予約時にキャンセルポリシーをご確認ください。</td></tr>
+                <tr><td style="padding: 0px 5px 10px;">■現地決済の場合、チェックイン時に宿泊代全額を現金またはクレジットカードにてお支払いいただきます。なお、ご予約時に事前クレジットカード決済（Web決済）もお選びいただけますので、ぜひご活用ください。</td></tr>
+            </table>
+        </section>
     </div>
+
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            $('.slide_items').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                prevArrow: '',
+                nextArrow: ''
+            });
+        });
+    </script>
 </body>
 </html>
