@@ -20,9 +20,10 @@ public class BookingController {
 
 	@Autowired
 	UserRepository userRepository;
-
     @Autowired
-    RoomData roomData;
+    UserData userData;
+    @Autowired
+    RoomData roomData;    
 
     /* -------------------
         Repository
@@ -37,32 +38,35 @@ public class BookingController {
         日程の選択
     -------------------- */
     @PostMapping("/select/dateSelect")
-    public String selectDate(@RequestParam("checkInDate") String checkInDate,
-							@RequestParam("checkOutDate") String checkOutDate,
+    public String selectDate(@RequestParam("checkInDate") String checkIn,
+							@RequestParam("checkOutDate") String checkOut,
 							@RequestParam(value = "adult", defaultValue = "1") String adults,
 							@RequestParam(value = "child", defaultValue = "0") String children, 
 							@ModelAttribute UserData userData,
 							BindingResult bindingResult, Model model) {
 
-        if (checkInDate.isEmpty() || checkOutDate.isEmpty()) {
+        if (checkIn.isEmpty() || checkOut.isEmpty()) {
             model.addAttribute("formError", "チェックイン日またはチェックアウト日を入力してください。");
             return "selectDate";
         }
 
         try {
-            LocalDate checkIn = LocalDate.parse(checkInDate);
-            LocalDate checkOut = LocalDate.parse(checkOutDate);
-            if (checkOut.isBefore(checkIn)) {
+            LocalDate checkInDate = LocalDate.parse(checkIn);
+            LocalDate checkOutDate = LocalDate.parse(checkOut);
+            if (checkOutDate.isBefore(checkInDate)) {
                 model.addAttribute("formError", "チェックアウト日はチェックイン日よりも後に設定してください。");
                 return "selectDate";
             }
 
             // 宿泊日数の計算
-            this.nights = (int) ChronoUnit.DAYS.between(checkIn, checkOut);
+            this.nights = (int) ChronoUnit.DAYS.between(checkInDate, checkOutDate);
 
+            
             // DBに登録
-            userData.setCheckIn(checkInDate);
-            userData.setCheckOut(checkOutDate);
+            userData.setCheckIn(checkIn);
+            userData.setCheckOut(checkOut);
+            userData.setCheckInDate(checkInDate);
+            userData.setCheckOutDate(checkOutDate);
             userData.setAdult(Integer.parseInt(adults));
             userData.setChild(Integer.parseInt(children));
 
@@ -91,7 +95,7 @@ public class BookingController {
     -------------------- */
     @PostMapping("/select/roomSelect")
 	public String selectRoom(@RequestParam("roomSelect") String room,
-                            UserData userData, Model model) {
+                            UserData userData ,ReservationManager reservationManager,Model model) {
         int roomPrice = roomData.getPrice(room);
         int totalPrice = roomPrice * nights;
         userData.setRoom(room);
@@ -100,6 +104,8 @@ public class BookingController {
         int roomCapacity = roomData.getRoomCapacity(room);
         int stayAdult = userData.getAdult();
         int stayChild = userData.getChild();
+
+        // System.out.println(userData.getCheckInDate()+","+ userData.getCheckOutDate());
         
         String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
         if ( roomCapacity < stayAdult + stayChild ) {
@@ -113,16 +119,18 @@ public class BookingController {
             return "selectRoom";
         }
 
-        if ( roomData.getRoomNum(room) == 0 ) {
-            for (String roomType : roomTypes) {
-                model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
-                model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
-                model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
-                model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
-            }
-            model.addAttribute("error", "選択された客室は満室のため予約できません。");
-            return "selectRoom";
-        }
+        // if ( roomData.getRoomNum(room) == 0 ) {
+        //     for (String roomType : roomTypes) {
+        //         model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
+        //         model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
+        //         model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
+        //         model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
+        //     }
+        //     model.addAttribute("error", "選択された客室は満室のため予約できません。");
+        //     return "selectRoom";
+            // }
+        
+        reservationManager.addReservation(userData.getCheckInDate(), userData.getCheckOutDate(), room);
 
         roomData.setRoomNum(room, roomData.getRoomNum(room)-1);
 		return "booking";
@@ -210,7 +218,9 @@ public class BookingController {
         else { return true; }
     }
 
-    /* メールアドレスの入力チェック */ 
+    /* ------------------------------------------------
+        メールアドレスの入力チェック
+    ------------------------------------------------- */
     public boolean inputFormCheckEmail(String str){
         if (str.matches("^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")) {
             return false;

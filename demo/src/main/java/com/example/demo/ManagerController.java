@@ -18,9 +18,10 @@ public class ManagerController {
     
     @Autowired
     private final UserRepository userRepository;
-
     @Autowired
-    RoomData roomData;
+    UserData userData;
+    @Autowired
+    RoomData roomData;   
     
     public ManagerController(UserRepository userRepository) {
         this.userRepository = userRepository;

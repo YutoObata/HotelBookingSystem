@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import java.time.LocalDate;
+
+import org.springframework.stereotype.Component;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Component
 @Table(name = "userData")
 public class UserData {
     @Id
@@ -23,6 +28,8 @@ public class UserData {
     private String email;
     private String checkIn;
     private String checkOut;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
     private Integer adult;
     private Integer child;
     private String room;
@@ -35,7 +42,7 @@ public class UserData {
     
     public UserData(String nameFamily, String name, String nameFamilyKana, String nameKana, 
                     String tel, String email,
-                    String checkIn, String checkOut,
+                    String checkIn, String checkOut, LocalDate checkInDate, LocalDate checkOutDate,
                     int adult, int child, 
                     String room, int price) {
         this.nameFamily = nameFamily;
@@ -46,6 +53,8 @@ public class UserData {
         this.email = email;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.adult = adult;
         this.child = child;
         this.room = room;
