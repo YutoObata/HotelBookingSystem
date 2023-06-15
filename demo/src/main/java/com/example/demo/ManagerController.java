@@ -41,7 +41,6 @@ public class ManagerController {
             model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
             model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
         }
-
         return "manager";
     }
 
@@ -66,11 +65,9 @@ public class ManagerController {
         roomMap.put("05", "Economy");
 
         String selectedRoom = roomMap.get(roomName);
-
         if (selectedRoom != null) {
             updateRoomData(selectedRoom, roomPrice, roomCapacity, roomNum);
         }
-
         return "redirect:/manager";
     }
 

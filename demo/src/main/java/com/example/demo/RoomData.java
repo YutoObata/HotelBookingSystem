@@ -12,6 +12,7 @@ public class RoomData {
     Map<String, String> roomTextMap = new HashMap<>();
     Map<String, Integer> roomCapacityMap = new HashMap<>();
     Map<String, Integer> roomCountMap = new HashMap<>();
+    Map<String, Integer> roomNowCountMap = new HashMap<>();
 
     public RoomData() {
         roomPriceMap.put("Suite", 48000);
@@ -37,6 +38,12 @@ public class RoomData {
         roomCountMap.put("Superior", 2);
         roomCountMap.put("Standard", 2);
         roomCountMap.put("Economy", 2);
+
+        roomNowCountMap.put("Suite", roomCountMap.get("Suite"));
+        roomNowCountMap.put("Deluxe", roomCountMap.get("Deluxe"));
+        roomNowCountMap.put("Superior", roomCountMap.get("Superior"));
+        roomNowCountMap.put("Standard", roomCountMap.get("Standard"));
+        roomNowCountMap.put("Economy", roomCountMap.get("Economy"));
     }
 
     public int getPrice(String room) {
@@ -65,5 +72,13 @@ public class RoomData {
 
     public void setRoomNum(String room, int num) {
         roomCountMap.put(room, num);
+    }
+
+    public int getNowRoomNum(String room) {
+        return roomNowCountMap.get(room);
+    }
+
+    public void setNowRoomNum(String room, int num) {
+        roomNowCountMap.put(room, num);
     }
 }

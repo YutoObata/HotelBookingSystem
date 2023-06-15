@@ -3,6 +3,8 @@ package com.example.demo;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,14 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class BookingController {
 
-    private int nights; // 宿泊日数
-
-	@Autowired
+    @Autowired
 	UserRepository userRepository;
     @Autowired
     UserData userData;
     @Autowired
-    RoomData roomData;    
+    RoomData roomData;  
 
     /* -------------------
         Repository
@@ -33,6 +33,12 @@ public class BookingController {
         this.roomData = new RoomData();
     }
 
+    // 宿泊日数
+    private int nights;
+
+    List<LocalDate> checkInDateList = new ArrayList<LocalDate>();
+    List<LocalDate> checkOutDateList = new ArrayList<LocalDate>();
+    List<String> roomType = new ArrayList<String>();
 
     /* -------------------
         日程の選択
@@ -60,8 +66,9 @@ public class BookingController {
 
             // 宿泊日数の計算
             this.nights = (int) ChronoUnit.DAYS.between(checkInDate, checkOutDate);
-
-            
+            // 日程をリストに格納
+            checkInDateList.add(checkInDate);
+            checkOutDateList.add(checkOutDate);
             // DBに登録
             userData.setCheckIn(checkIn);
             userData.setCheckOut(checkOut);
@@ -70,13 +77,24 @@ public class BookingController {
             userData.setAdult(Integer.parseInt(adults));
             userData.setChild(Integer.parseInt(children));
 
+            // 日程と残数チェック
+            for (int i = 0; i < checkInDateList.size(); i++) {
+                // 今回のチェックイン日が、前の人のチェックイン日よりも前 かつ チェックアウト日が前の人のチェックイン日よりも前の場合
+                if (checkInDate.isBefore(checkInDateList.get(i)) && checkOutDate.isAfter(checkInDateList.get(i))) {
+                    roomData.setNowRoomNum(roomType.get(i), roomData.getNowRoomNum(roomType.get(i))-1);
+                } // 今回のチェックイン日が、前の人の日程内(チェックイン日よりも後 かつ チェックアウト日よりも前)の場合
+                else if (checkInDate.isAfter(checkInDateList.get(i)) && checkInDate.isBefore(checkOutDateList.get(i))) {
+                    roomData.setNowRoomNum(roomType.get(i), roomData.getNowRoomNum(roomType.get(i))-1);
+                }
+            }
+
             // 各客室の情報を取得してモデルに追加
             String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
             for (String roomType : roomTypes) {
                 model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
                 model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
                 model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
-                model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
+                model.addAttribute(roomType + "RoomNum", roomData.getNowRoomNum(roomType));
             }
 
             model.addAttribute("nights", nights);
@@ -89,50 +107,50 @@ public class BookingController {
         }
     }
 
-
     /* -------------------
         部屋の選択
     -------------------- */
     @PostMapping("/select/roomSelect")
 	public String selectRoom(@RequestParam("roomSelect") String room,
-                            UserData userData ,ReservationManager reservationManager,Model model) {
+                            UserData userData, Model model) {
         int roomPrice = roomData.getPrice(room);
         int totalPrice = roomPrice * nights;
         userData.setRoom(room);
         userData.setPrice(totalPrice);
+        roomType.add(room);
 
         int roomCapacity = roomData.getRoomCapacity(room);
         int stayAdult = userData.getAdult();
         int stayChild = userData.getChild();
 
-        // System.out.println(userData.getCheckInDate()+","+ userData.getCheckOutDate());
-        
+        int SuiteRoomNum = roomData.getNowRoomNum("Suite");
+        int DeluxeRoomNum = roomData.getNowRoomNum("Deluxe");
+        int SuperiorRoomNum = roomData.getNowRoomNum("Superior");
+        int StandardRoomNum = roomData.getNowRoomNum("Standard");
+        int EconomyRoomNum = roomData.getNowRoomNum("Economy");
+
         String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
         if ( roomCapacity < stayAdult + stayChild ) {
             for (String roomType : roomTypes) {
                 model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
                 model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
                 model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
-                model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
+                model.addAttribute(roomType + "RoomNum", roomData.getNowRoomNum(roomType));
             }
             model.addAttribute("error", "宿泊者数が客室の定員を超えています。");
             return "selectRoom";
         }
 
-        // if ( roomData.getRoomNum(room) == 0 ) {
-        //     for (String roomType : roomTypes) {
-        //         model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
-        //         model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
-        //         model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
-        //         model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
-        //     }
-        //     model.addAttribute("error", "選択された客室は満室のため予約できません。");
-        //     return "selectRoom";
-            // }
-        
-        reservationManager.addReservation(userData.getCheckInDate(), userData.getCheckOutDate(), room);
-
-        roomData.setRoomNum(room, roomData.getRoomNum(room)-1);
+        if ( SuiteRoomNum == 0 || DeluxeRoomNum == 0 || SuperiorRoomNum == 0 || StandardRoomNum == 0 || EconomyRoomNum == 0) {
+            for (String roomType : roomTypes) {
+                model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
+                model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
+                model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
+                model.addAttribute(roomType + "RoomNum", roomData.getNowRoomNum(roomType));
+            }
+            model.addAttribute("error", "選択された客室は満室のため予約できません。");
+            return "selectRoom";
+        }
 		return "booking";
 	}
 

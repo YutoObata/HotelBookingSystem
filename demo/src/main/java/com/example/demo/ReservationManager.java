@@ -25,9 +25,10 @@ public class ReservationManager {
     }
 
     public boolean isOverlappingReservation(LocalDate checkInDate, LocalDate checkOutDate, String room) {
+        //System.out.println("in:"+checkInDate+",out:"+checkOutDate+",room:"+room);
         List<UserData> reservationsForRoom = roomReservations.getOrDefault(room, new ArrayList<>());
         for (UserData reservation : reservationsForRoom) {
-            // System.out.println(reservation);
+            System.out.println("これなに"+reservation+","+reservationsForRoom);
             if (checkInDate.isBefore(reservation.getCheckOutDate()) && checkOutDate.isAfter(reservation.getCheckInDate().minusDays(1))) {
                 return true; // 部屋ごとの重なる予約がある
             }
@@ -36,16 +37,16 @@ public class ReservationManager {
     }
 
     public void addReservation(LocalDate checkInDate, LocalDate checkOutDate, String room) {
-        // System.out.println("in:"+checkInDate+",out:"+checkOutDate+",room:"+room);
+        //ok
         if (isOverlappingReservation(checkInDate, checkOutDate, room)) {
             System.out.println("予約が重なっています。別の日程を選択してください。");
             return;
         }
 
-        // UserData newReservation = new UserData(guestName, checkInDate, checkOutDate, room);
-        // List<UserData> reservationsForRoom = roomReservations.getOrDefault(room, new ArrayList<>());
-        // reservationsForRoom.add(newReservation);
-        // roomReservations.put(room, reservationsForRoom);
+        UserData newReservation = new UserData(null, null, null, null, null, null, null, null, checkInDate, checkOutDate, 0, 0, room, 0);
+        List<UserData> reservationsForRoom = roomReservations.getOrDefault(room, new ArrayList<>());
+        reservationsForRoom.add(newReservation);
+        roomReservations.put(room, reservationsForRoom);
         System.out.println("予約が追加されました。");
     }
 }
