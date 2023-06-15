@@ -144,7 +144,6 @@ public class BookingController {
             model.addAttribute("error", "宿泊者数が客室の定員を超えています。");
             return "selectRoom";
         }
-
         
         if ( SuiteRoomNum == 0 || DeluxeRoomNum == 0 || SuperiorRoomNum == 0 || StandardRoomNum == 0 || EconomyRoomNum == 0) {
             String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};

@@ -13,7 +13,8 @@ public class RoomData {
     Map<String, Integer> roomCapacityMap = new HashMap<>();
     Map<String, Integer> roomCountMap = new HashMap<>();
     Map<String, Integer> roomNowCountMap = new HashMap<>();
-    Map<String, String> logInCheck = new HashMap<>();
+    // Map<String, String> logInCheck = new HashMap<>();
+    boolean logInCheck = false;
 
 
     public RoomData() {
@@ -46,8 +47,6 @@ public class RoomData {
         roomNowCountMap.put("Superior", roomCountMap.get("Superior"));
         roomNowCountMap.put("Standard", roomCountMap.get("Standard"));
         roomNowCountMap.put("Economy", roomCountMap.get("Economy"));
-
-        logInCheck.put("login", "NG");
     }
 
     public int getPrice(String room) {
@@ -86,11 +85,11 @@ public class RoomData {
         roomNowCountMap.put(room, num);
     }
 
-    public String getLoginCheck () {
-        return logInCheck.get("login");
+    public boolean getLoginCheck () {
+        return logInCheck;
     }
 
-    public void setLoginCheck(String str) {
-        logInCheck.put("login", str);
+    public void setLoginCheck(boolean boo) {
+        this.logInCheck = boo;
     }
 }

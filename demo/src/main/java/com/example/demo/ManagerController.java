@@ -31,9 +31,9 @@ public class ManagerController {
     @GetMapping("/manager")
     public String manager(Model model) {
         System.out.println(roomData.getLoginCheck());
-        if(roomData.getLoginCheck().equals("NG")){
+        if(!roomData.getLoginCheck()){
             return "menu";
-        } roomData.setLoginCheck("NG");
+        } roomData.setLoginCheck(false);
 
         List<UserData> userDataList = userRepository.findAll();
         model.addAttribute("userDataList", userDataList);

@@ -58,7 +58,7 @@ public class MenuController {
     public String login(String username, String password, Model model) {
         // ログイン処理
         if (username.equals("user") && password.equals("1234")) {
-            roomData.setLoginCheck("OK");
+            roomData.setLoginCheck(true);
             return "redirect:/manager";
         } else {
             model.addAttribute("errorMessage", "Username or password is incorrect.");
