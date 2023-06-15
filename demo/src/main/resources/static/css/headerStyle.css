@@ -63,3 +63,9 @@ header img {
 a {
     text-decoration: none;
 }
+
+/* エラーメッセージ */
+#errorMessage {
+    margin-left: 36px;
+    color: red;
+}
