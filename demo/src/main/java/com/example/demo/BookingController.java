@@ -23,7 +23,7 @@ public class BookingController {
     @Autowired
     UserData userData;
     @Autowired
-    RoomData roomData;  
+    RoomData roomData;
 
     /* -------------------
         Repository
@@ -88,6 +88,10 @@ public class BookingController {
                 }
             }
 
+            if (roomData.getNowRoomNum("Suite") <= 0) {
+                roomData.setNowRoomNum("Suite", 0);
+            }
+
             // 各客室の情報を取得してモデルに追加
             String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
             for (String roomType : roomTypes) {
@@ -129,8 +133,8 @@ public class BookingController {
         int StandardRoomNum = roomData.getNowRoomNum("Standard");
         int EconomyRoomNum = roomData.getNowRoomNum("Economy");
 
-        String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
         if ( roomCapacity < stayAdult + stayChild ) {
+            String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
             for (String roomType : roomTypes) {
                 model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
                 model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
@@ -141,12 +145,14 @@ public class BookingController {
             return "selectRoom";
         }
 
+        
         if ( SuiteRoomNum == 0 || DeluxeRoomNum == 0 || SuperiorRoomNum == 0 || StandardRoomNum == 0 || EconomyRoomNum == 0) {
+            String[] roomTypes = {"Suite", "Deluxe", "Superior", "Standard", "Economy"};
             for (String roomType : roomTypes) {
                 model.addAttribute(roomType + "RoomPrice", roomData.getPrice(roomType));
                 model.addAttribute(roomType + "RoomText", roomData.getRoomText(roomType));
                 model.addAttribute(roomType + "RoomCapacity", roomData.getRoomCapacity(roomType));
-                model.addAttribute(roomType + "RoomNum", roomData.getNowRoomNum(roomType));
+                model.addAttribute(roomType + "RoomNum", roomData.getRoomNum(roomType));
             }
             model.addAttribute("error", "選択された客室は満室のため予約できません。");
             return "selectRoom";

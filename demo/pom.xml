@@ -39,7 +39,7 @@
     <!-- Spring Security を使用するための依存関係 -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
+    <artifactId>spring-boot-starter-security</artifactId>
         <!-- 必要に応じてバージョンを指定 -->
     </dependency>
 

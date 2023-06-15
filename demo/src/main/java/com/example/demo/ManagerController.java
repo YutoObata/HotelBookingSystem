@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ManagerController {
     
     @Autowired
-    private final UserRepository userRepository;
+	UserRepository userRepository;
     @Autowired
     UserData userData;
     @Autowired
@@ -27,9 +27,14 @@ public class ManagerController {
         this.userRepository = userRepository;
         this.roomData = new RoomData();
     }
-    
+
     @GetMapping("/manager")
     public String manager(Model model) {
+        System.out.println(roomData.getLoginCheck());
+        if(roomData.getLoginCheck().equals("NG")){
+            return "menu";
+        } roomData.setLoginCheck("NG");
+
         List<UserData> userDataList = userRepository.findAll();
         model.addAttribute("userDataList", userDataList);
 

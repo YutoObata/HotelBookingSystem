@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MenuController {
+
+    @Autowired
+	UserRepository userRepository;
+    @Autowired
+    UserData userData;
+    @Autowired
+    RoomData roomData;
+
+    public MenuController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+        this.roomData = new RoomData();
+    }
     
     /* -------------------
         ローカルホスト
@@ -45,7 +58,7 @@ public class MenuController {
     public String login(String username, String password, Model model) {
         // ログイン処理
         if (username.equals("user") && password.equals("1234")) {
-            model.addAttribute("username", username);
+            roomData.setLoginCheck("OK");
             return "redirect:/manager";
         } else {
             model.addAttribute("errorMessage", "Username or password is incorrect.");
