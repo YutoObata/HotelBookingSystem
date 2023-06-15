@@ -119,10 +119,10 @@ button p {
     /* padding: 5px 10px 1px 40px; */
 }
 #member #adultCount {
-    padding: 6px 10px 1px 40px;
+    padding: 6px 10px 0.5px 40px;
 }
 #member #childCount {
-    padding: 5px 10px 1px 40px;
+    padding: 5.5px 10px 1px 40px;
 }
 
 button[name="count"] {

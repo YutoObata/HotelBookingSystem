@@ -25,12 +25,18 @@
 
 nav {
     background-color: rgb(248, 242, 240);
+    border: solid 1px rgb(189, 164, 158); 
+    width: 60%;
+    height: 28px;
+    margin: 10px auto 20px;
 }
 nav ul {
     display: flex;
     list-style: none;
     justify-content: center;
     gap: 25px;
+    margin: 3px;
+    padding: 0;
 }
 nav ul li img {
     height: 22px;

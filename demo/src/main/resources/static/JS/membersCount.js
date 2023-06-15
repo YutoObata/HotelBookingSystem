@@ -4,9 +4,11 @@
 function increaseAdultCount() {
     var countElement = document.getElementById("adultCount");
     var count = parseInt(countElement.innerText);
-    count++;
-    countElement.innerText = count;
-    document.getElementById("adult").value = count; // 隠しフィールドの値を更新
+    if (count < 9) {
+        count++;
+        countElement.innerText = count;
+        document.getElementById("adult").value = count; // 隠しフィールドの値を更新
+    }
 }
 
 function decreaseAdultCount() {
@@ -22,9 +24,11 @@ function decreaseAdultCount() {
 function increaseChildCount() {
     var countElement = document.getElementById("childCount");
     var count = parseInt(countElement.innerText);
-    count++;
-    countElement.innerText = count;
-    document.getElementById("child").value = count; // 隠しフィールドの値を更新
+    if (count < 9) {
+        count++;
+        countElement.innerText = count;
+        document.getElementById("child").value = count; // 隠しフィールドの値を更新
+    }
 }
 
 function decreaseChildCount() {
